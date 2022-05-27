@@ -1,0 +1,13 @@
+@import "fonts";
+@import "variables";
+@import "libs/normalize";
+
+@import "components/all";
+* {
+    font-family: "Proxima Nova";
+}
+body {
+    background: #005c97;
+    background: -webkit-linear-gradient(to right, #363795, #005c97);
+    background: linear-gradient(to right, #363795, #005c97);
+}

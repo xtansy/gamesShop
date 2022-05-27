@@ -1,0 +1,71 @@
+.cart {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 200px 165px;
+    &__content {
+        width: 860px;
+        h1 {
+            margin-bottom: 40px;
+        }
+        span {
+            color: aqua;
+        }
+    }
+    &__buy {
+        width: 400px;
+        max-height: 220px;
+        position: fixed;
+        right: 15%;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 32px;
+        &-text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p {
+                font-size: 36px;
+            }
+            margin-bottom: 32px;
+        }
+        &-btn {
+            width: 250px;
+        }
+    }
+}
+
+.cart__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 0;
+    width: 100%;
+    &-info {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 35px;
+        }
+    }
+    &-text {
+        display: flex;
+        flex-direction: column;
+        text-transform: uppercase;
+        h3 {
+            margin-bottom: 20px;
+        }
+        h3,
+        p {
+            font-size: 24px;
+        }
+    }
+    &-delete {
+        cursor: pointer;
+    }
+    &-img {
+        border-radius: 10px;
+        -webkit-mask: url("../../assets/cardshadow.png") top left/contain;
+    }
+}

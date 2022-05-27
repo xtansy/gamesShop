@@ -1,0 +1,85 @@
+.item {
+    max-width: 100%;
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    img {
+        -webkit-mask: url("../../assets/cardshadow.png") top left/contain;
+        filter: brightness(50%);
+
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+    &__descr {
+        position: absolute;
+        z-index: 2;
+        left: 7%;
+        top: 60%;
+        h1 {
+            color: white;
+            text-transform: uppercase;
+            font-size: 70px;
+            margin-bottom: 25px;
+        }
+        button {
+            font-size: 16px;
+            line-height: 1.2;
+            padding: 11px 12px 8px;
+            border-radius: 11px;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            -webkit-transition: 0.3s;
+            transition: all 0.4s ease-in-out;
+            border: 0;
+            color: black;
+        }
+        span {
+            margin-left: 15px;
+            font-size: 18px;
+        }
+        button:hover {
+            color: white;
+            background: black;
+        }
+    }
+}
+
+.main-container {
+    margin: 0 auto;
+
+    width: 100%;
+
+    height: 100vh;
+}
+
+.window {
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.all-pages-container {
+    height: 100%;
+    display: flex;
+
+    transition: all 0.76s ease-in-out;
+}
+
+.arrow {
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+}
+
+.arrow-right {
+    right: 5%;
+}
+
+.arrow-left {
+    left: 5%;
+}

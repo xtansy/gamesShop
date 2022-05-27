@@ -1,0 +1,65 @@
+{
+    "games": [
+        {
+            "id": 0,
+            "imageUrl": "card/detroit.jpg",
+            "name": "Detroit",
+            "price": 803,
+            "rating": 1,
+            "type": "new"
+        },
+        {
+            "id": 1,
+            "imageUrl": "card/SurvivingMars.jpg",
+            "name": "Surviving Mars: Future Contemporary Cosmetic Pack",
+            "price": 133,
+            "type": "horror",
+            "rating": 2
+        },
+        {
+            "id": 2,
+            "imageUrl": "card/hitman.jpg",
+            "bigImageUrl": "bigCard/hitman.jpg",
+            "name": "Hitman",
+            "price": 999,
+            "type": "shoter",
+            "rating": 3
+        },
+        {
+            "id": 3,
+            "imageUrl": "card/oaken.jpg",
+            "name": "Oaken",
+            "price": 449,
+            "type": "world",
+            "rating": 4
+        },
+        {
+            "id": 4,
+            "imageUrl": "card/ResidentEvil2.jpg",
+            "bigImageUrl": "bigCard/ResidentEvil2.jpg",
+            "name": "Resident Evil 2",
+            "price": 999,
+            "type": "world",
+            "rating": 7
+        },
+        {
+            "id": 5,
+            "imageUrl": "card/overlord.jpg",
+            "bigImageUrl": "bigCard/overlord.jpg",
+            "name": "Stellaris: Overlord",
+            "price": 1200,
+            "type": "world",
+            "rating": 8
+        },
+        {
+            "id": 6,
+            "imageUrl": "card/CoreKeeper.jpg",
+            "bigImageUrl": "bigCard/CoreKeeper.jpg",
+            "name": "Core Keeper",
+            "price": 449,
+            "type": "world",
+            "rating": 5
+        }
+    ],
+    "favorites": []
+}

@@ -1,0 +1,21 @@
+.categories {
+    margin-left: 150px;
+    ul {
+        display: flex;
+        justify-content: center;
+    }
+    &__li {
+        color: white;
+        text-transform: uppercase;
+        font-size: 25px;
+        cursor: pointer;
+        padding: 8px;
+        &_active {
+            background-color: rgb(47, 61, 190);
+            border-radius: 25%;
+        }
+    }
+    ul > *:not(:last-child) {
+        margin-right: 35px;
+    }
+}

@@ -1,0 +1,47 @@
+@import "../variables";
+
+.header {
+    width: 100%;
+    padding: 36px 80px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 10;
+}
+.header__logo {
+    img {
+        background: white;
+        padding: 5px;
+        border-radius: 25%;
+    }
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 15px;
+        span {
+            color: #fdfbfb60;
+        }
+    }
+}
+.header__logo h2 {
+    font-size: 28px;
+    color: white;
+    margin-left: 5px;
+    text-transform: uppercase;
+}
+
+.header__settings {
+    display: flex;
+    align-items: center;
+}
+.header__settings-like {
+    margin-right: 40px;
+}
+.header__settings-like,
+.header__settings-cart {
+    cursor: pointer;
+}

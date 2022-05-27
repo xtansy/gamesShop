@@ -1,0 +1,18 @@
+.content {
+    height: 100%;
+}
+.content__items {
+    width: 100%;
+    padding: 150px 150px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.content__filters {
+    margin-top: 50px;
+    padding: 0 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

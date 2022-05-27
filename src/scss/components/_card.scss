@@ -1,0 +1,59 @@
+.card {
+    max-width: 350px;
+    min-height: 420px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 11px;
+    img {
+        transition: all 0.2s ease-in-out;
+        border-radius: 11px;
+        -webkit-mask: url("../../assets/cardshadow.png") top left/contain;
+    }
+    position: relative;
+    border: 1px solid whitesmoke;
+    &__button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: none;
+
+        &_delete {
+            text-transform: lowercase;
+            width: 200px;
+        }
+    }
+    &__like {
+        display: none;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        cursor: pointer;
+    }
+}
+.card:hover {
+    img {
+        filter: brightness(70%);
+    }
+    .card__button {
+        display: flex;
+    }
+    .card__like {
+        display: block;
+    }
+    border: 1px solid gold;
+}
+.card__name {
+    padding: 0 8px;
+    font-size: 19px;
+    color: white;
+    margin-bottom: 10px;
+}
+.card__price {
+    padding: 0 8px;
+    font-size: 25px;
+    color: white;
+}
