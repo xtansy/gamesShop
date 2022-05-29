@@ -1,6 +1,6 @@
 import React from "react";
 import like from "../assets/like.png";
-import { useSelector } from "react-redux";
+import Button from "./Button";
 
 const Card = ({
     name,
@@ -10,10 +10,6 @@ const Card = ({
     onSelectBuy,
     onSelectDeleteItem,
 }) => {
-    const addedGames = useSelector((state) => state.cart.cart);
-
-    const isAdded = addedGames.findIndex((item) => item.id === id) > -1;
-
     const onClickBuy = () => {
         onSelectBuy({ id, name, imageUrl, price });
     };
@@ -26,18 +22,7 @@ const Card = ({
         <div className="card">
             <img src={imageUrl} alt="1" />
 
-            {!isAdded ? (
-                <button onClick={onClickBuy} className="button card__button">
-                    В корзину
-                </button>
-            ) : (
-                <button
-                    onClick={onClickDeleteItem}
-                    className="button card__button card__button_delete"
-                >
-                    Удалить из корзины
-                </button>
-            )}
+            <Button id={id} onAdd={onClickBuy} onDelete={onClickDeleteItem} />
 
             <img className="card__like" width={36} src={like} alt="like" />
 

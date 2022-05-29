@@ -16,6 +16,7 @@ const Header = () => {
                     </div>
                 </div>
             </Link>
+
             <div className="header__settings">
                 <img
                     src={like}

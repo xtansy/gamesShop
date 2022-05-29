@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Card from "../components/Card";
@@ -6,6 +6,7 @@ import Categories from "../components/Categories";
 import SortPopup from "../components/SortPopup";
 import CarouselItem from "../components/CarouselItem";
 import Carousel from "../components/Carousel";
+import SearchGames from "../components/SearchGames";
 
 import { fetchGames } from "../sliceces/gamesSlice";
 import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
@@ -28,11 +29,11 @@ const popup = [
 const Home = () => {
     const dispatch = useDispatch();
 
-    const games = useSelector((state) => state.games.games);
-    const isLoading = useSelector((state) => state.games.isLoading);
+    const { games, isLoading } = useSelector((state) => state.games);
 
-    const category = useSelector((state) => state.filters.category);
-    const sortBy = useSelector((state) => state.filters.sortBy);
+    const gamesForSlider = useSelector((state) => state.games.gamesForSlider);
+
+    const { category, sortBy } = useSelector((state) => state.filters);
 
     useEffect(() => {
         dispatch(fetchGames({ category, sortBy }));
@@ -46,33 +47,37 @@ const Home = () => {
         dispatch(selectPopup(type));
     };
 
-    const onSelectBuy = (item) => {
+    const onSelectBuy = useCallback((item) => {
         dispatch(addItem(item));
-    };
+    }, []);
 
-    const onSelectDeleteItem = (id, price) => {
+    const onSelectDeleteItem = useCallback((id, price) => {
         dispatch(deleteItem({ id, price }));
-    };
+    }, []);
 
     return (
         <>
+            <SearchGames
+                onSelectDeleteItem={onSelectDeleteItem}
+                onSelectBuy={onSelectBuy}
+            />
+
             <Carousel>
                 {!isLoading ? (
-                    games
-                        .filter((item) => item.bigImageUrl)
-                        .map((item) => {
-                            return (
-                                <CarouselItem
-                                    key={item.id}
-                                    id={item.id}
-                                    onSelectBuy={onSelectBuy}
-                                    name={item.name}
-                                    price={item.price}
-                                    imageUrl={item.imageUrl}
-                                    bigImageUrl={item.bigImageUrl}
-                                />
-                            );
-                        })
+                    gamesForSlider.map((item) => {
+                        return (
+                            <CarouselItem
+                                key={item.id}
+                                id={item.id}
+                                onSelectBuy={onSelectBuy}
+                                onSelectDeleteItem={onSelectDeleteItem}
+                                name={item.name}
+                                price={item.price}
+                                imageUrl={item.imageUrl}
+                                bigImageUrl={item.bigImageUrl}
+                            />
+                        );
+                    })
                 ) : (
                     <h1>Загрузка</h1>
                 )}

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 const CarouselItem = ({
     id,
@@ -7,16 +8,27 @@ const CarouselItem = ({
     imageUrl,
     bigImageUrl,
     onSelectBuy,
+    onSelectDeleteItem,
 }) => {
     const onClickBuy = () => {
         onSelectBuy({ id, name, price, imageUrl });
+    };
+    const onClickDeleteItem = () => {
+        onSelectDeleteItem(id, price);
     };
 
     return (
         <div className="item">
             <div className="item__descr">
                 <h1>{name}</h1>
-                <button onClick={onClickBuy}>В корзину</button>
+
+                <Button
+                    slider
+                    id={id}
+                    onAdd={onClickBuy}
+                    onDelete={onClickDeleteItem}
+                />
+
                 <span>{price} Р</span>
             </div>
             <img src={bigImageUrl} alt="img"></img>
@@ -24,4 +36,4 @@ const CarouselItem = ({
     );
 };
 
-export default CarouselItem;
+export default React.memo(CarouselItem);

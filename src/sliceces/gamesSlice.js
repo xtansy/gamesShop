@@ -3,6 +3,8 @@ import axios from "axios";
 
 const initialState = {
     games: [],
+    gamesForSlider: [],
+    searchedStr: "",
     isLoading: false,
 };
 export const fetchGames = createAsyncThunk(
@@ -27,8 +29,12 @@ const games = createSlice({
     name: "games",
     initialState,
     reducers: {
-        changeLoading: (state) => {
-            state.isLoading = !state.loading;
+        changeSearchedStr: (state, action) => {
+            if (action.payload.length === 0) {
+                state.searchedStr = "";
+                return;
+            }
+            state.searchedStr = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -37,8 +43,12 @@ const games = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchGames.fulfilled, (state, action) => {
-                state.isLoading = false;
                 state.games = action.payload;
+                !state.gamesForSlider.length &&
+                    (state.gamesForSlider = action.payload.filter(
+                        (item) => item.bigImageUrl
+                    ));
+                state.isLoading = false;
             })
             .addCase(fetchGames.rejected, (state) => {
                 state.isLoading = true;
@@ -49,4 +59,4 @@ const games = createSlice({
 const { actions, reducer } = games;
 
 export default reducer;
-export const { changeLoading } = actions;
+export const { changeSearchedStr } = actions;

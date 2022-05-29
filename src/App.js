@@ -8,7 +8,6 @@ function App() {
     return (
         <>
             <Header />
-
             <div className="content">
                 <Routes>
                     <Route path="/" element={<Home />} />
