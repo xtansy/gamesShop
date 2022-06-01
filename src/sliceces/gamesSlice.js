@@ -4,12 +4,14 @@ import axios from "axios";
 const initialState = {
     games: [],
     gamesForSlider: [],
+    gamesForSearch: [],
     searchedStr: "",
     isLoading: false,
+    paginateCount: 1,
 };
 export const fetchGames = createAsyncThunk(
     "games/fetchGames",
-    async (action) => {
+    async (action, state) => {
         const { category, sortBy } = action;
 
         const categoryParams = `${category ? `type=${category}` : ""}`;
@@ -18,8 +20,14 @@ export const fetchGames = createAsyncThunk(
             sortBy.type ? `&_sort=${sortBy.type.type}` : ""
         }&_order=${sortBy.order}`;
 
+        const paginationParams = `&_page=${
+            state.getState().games.paginateCount
+        }&_limit=4`;
+
         const { data } = await axios.get(
-            `http://localhost:3001/games?${categoryParams + sortByParams}`
+            `http://localhost:3001/games?${
+                categoryParams + sortByParams + paginationParams
+            }`
         );
         return data;
     }
@@ -36,6 +44,7 @@ const games = createSlice({
             }
             state.searchedStr = action.payload;
         },
+        changePaginateCount: (state, action) => {},
     },
     extraReducers: (builder) => {
         builder
@@ -48,6 +57,9 @@ const games = createSlice({
                     (state.gamesForSlider = action.payload.filter(
                         (item) => item.bigImageUrl
                     ));
+                !state.gamesForSearch.length &&
+                    (state.gamesForSearch = action.payload);
+
                 state.isLoading = false;
             })
             .addCase(fetchGames.rejected, (state) => {

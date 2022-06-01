@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import Card from "./Card";
 
 const SearchBlock = ({ onSelectDeleteItem, onSelectBuy }) => {
-    const { games, searchedStr } = useSelector((state) => state.games);
+    const { gamesForSearch, searchedStr } = useSelector((state) => state.games);
 
-    const searched = games.filter((item) =>
+    const searched = gamesForSearch.filter((item) =>
         item.name.toLowerCase().includes(searchedStr.toLowerCase())
     );
 

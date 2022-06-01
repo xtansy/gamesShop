@@ -6,7 +6,9 @@
     z-index: 15;
     display: flex;
     align-items: center;
+
     width: 40%;
+
     border-radius: 10px;
     input {
         width: 100%;
@@ -26,12 +28,12 @@
 }
 .searchBlock {
     height: 100%;
-    position: absolute;
+    position: fixed;
     padding: 150px 175px;
     width: 81%;
     right: 0;
     background: rgba(0, 0, 0, 0.952);
-    z-index: 9;
+    z-index: 8;
     &__items {
         display: flex;
         flex-wrap: wrap;
