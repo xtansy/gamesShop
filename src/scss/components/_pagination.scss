@@ -6,13 +6,19 @@
     color: white;
     font-size: 25px;
     width: 500px;
-    li {
+    &__li {
+        cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 50px;
-        height: 48px;
+        height: 50px;
         border: 1px solid white;
         border-radius: 100%;
+        &_active {
+            color: black;
+            font-size: 35px;
+            background: white;
+        }
     }
 }

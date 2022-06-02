@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartItem from "../components/CartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteItem } from "../sliceces/cartSlice";
+import { changeSearchedStr } from "../sliceces/gamesSlice";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,10 @@ const Cart = () => {
         totalPrice,
         totalCount,
     } = useSelector((state) => state.cart);
+
+    useEffect(() => {
+        dispatch(changeSearchedStr(""));
+    }, []);
 
     return (
         <div className="cart">

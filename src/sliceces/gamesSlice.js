@@ -3,8 +3,7 @@ import axios from "axios";
 
 const initialState = {
     games: [],
-    gamesForSlider: [],
-    gamesForSearch: [],
+    allGames: [],
     searchedStr: "",
     isLoading: false,
     paginateCount: 1,
@@ -24,12 +23,26 @@ export const fetchGames = createAsyncThunk(
             state.getState().games.paginateCount
         }&_limit=4`;
 
-        const { data } = await axios.get(
+        if (!state.getState().games.allGames.length) {
+            const { data: allGames } = await axios.get(
+                `http://localhost:3001/games`
+            );
+
+            const { data: filteredGames } = await axios.get(
+                `http://localhost:3001/games?${
+                    categoryParams + sortByParams + paginationParams
+                }`
+            );
+
+            return { allGames, filteredGames };
+        }
+
+        const { data: filteredGames } = await axios.get(
             `http://localhost:3001/games?${
                 categoryParams + sortByParams + paginationParams
             }`
         );
-        return data;
+        return { filteredGames };
     }
 );
 
@@ -44,7 +57,9 @@ const games = createSlice({
             }
             state.searchedStr = action.payload;
         },
-        changePaginateCount: (state, action) => {},
+        changePaginateCount: (state, action) => {
+            state.paginateCount = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -52,13 +67,10 @@ const games = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchGames.fulfilled, (state, action) => {
-                state.games = action.payload;
-                !state.gamesForSlider.length &&
-                    (state.gamesForSlider = action.payload.filter(
-                        (item) => item.bigImageUrl
-                    ));
-                !state.gamesForSearch.length &&
-                    (state.gamesForSearch = action.payload);
+                state.games = action.payload.filteredGames;
+
+                !state.allGames.length &&
+                    (state.allGames = action.payload.allGames);
 
                 state.isLoading = false;
             })
@@ -71,4 +83,4 @@ const games = createSlice({
 const { actions, reducer } = games;
 
 export default reducer;
-export const { changeSearchedStr } = actions;
+export const { changeSearchedStr, changePaginateCount } = actions;

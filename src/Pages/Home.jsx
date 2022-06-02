@@ -26,19 +26,57 @@ const popup = [
     { name: "Популярности", type: "rating" },
     { name: "Алфавиту", type: "name" },
 ];
+const gamesForSlider = [
+    {
+        id: 6,
+        imageUrl: "card/CoreKeeper.jpg",
+        bigImageUrl: "bigCard/CoreKeeper.jpg",
+        name: "Core Keeper",
+        price: 449,
+        type: "world",
+        rating: 5,
+    },
+    {
+        id: 4,
+        imageUrl: "card/ResidentEvil2.jpg",
+        bigImageUrl: "bigCard/ResidentEvil2.jpg",
+        name: "Resident Evil 2",
+        price: 999,
+        type: "world",
+        rating: 7,
+    },
+    {
+        id: 2,
+        imageUrl: "card/hitman.jpg",
+        bigImageUrl: "bigCard/hitman.jpg",
+        name: "Hitman",
+        price: 999,
+        type: "shoter",
+        rating: 3,
+    },
+    {
+        id: 5,
+        imageUrl: "card/overlord.jpg",
+        bigImageUrl: "bigCard/overlord.jpg",
+        name: "Stellaris: Overlord",
+        price: 1200,
+        type: "world",
+        rating: 8,
+    },
+];
 
 const Home = () => {
     const dispatch = useDispatch();
 
-    const { games, isLoading } = useSelector((state) => state.games);
-
-    const gamesForSlider = useSelector((state) => state.games.gamesForSlider);
+    const { games, isLoading, paginateCount } = useSelector(
+        (state) => state.games
+    );
 
     const { category, sortBy } = useSelector((state) => state.filters);
 
     useEffect(() => {
         dispatch(fetchGames({ category, sortBy }));
-    }, [category, sortBy]);
+    }, [category, sortBy, paginateCount]);
 
     const onSelectCategory = (type) => {
         dispatch(selectCategory(type));
@@ -116,7 +154,7 @@ const Home = () => {
                 )}
             </div>
 
-            <Pagination />
+            <Pagination activePage={paginateCount} gamesOnPage={4} />
         </>
     );
 };
