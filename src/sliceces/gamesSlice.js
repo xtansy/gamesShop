@@ -24,23 +24,17 @@ export const fetchGames = createAsyncThunk(
         }&_limit=4`;
 
         if (!state.getState().games.allGames.length) {
-            const { data: allGames } = await axios.get(
-                `http://localhost:3001/games`
-            );
+            const { data: allGames } = await axios.get(`/games`);
 
             const { data: filteredGames } = await axios.get(
-                `http://localhost:3001/games?${
-                    categoryParams + sortByParams + paginationParams
-                }`
+                `/games?${categoryParams + sortByParams + paginationParams}`
             );
 
             return { allGames, filteredGames };
         }
 
         const { data: filteredGames } = await axios.get(
-            `http://localhost:3001/games?${
-                categoryParams + sortByParams + paginationParams
-            }`
+            `/games?${categoryParams + sortByParams + paginationParams}`
         );
         return { filteredGames };
     }
