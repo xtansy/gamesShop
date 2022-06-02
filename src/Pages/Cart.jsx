@@ -18,6 +18,7 @@ const Cart = () => {
     } = useSelector((state) => state.cart);
 
     useEffect(() => {
+        document.body.style.overflow = "auto";
         dispatch(changeSearchedStr(""));
     }, []);
 
