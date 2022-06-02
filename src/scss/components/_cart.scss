@@ -12,6 +12,9 @@
         span {
             color: aqua;
         }
+        hr {
+            width: 90%;
+        }
     }
     &__buy {
         width: 400px;
@@ -41,7 +44,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 50px 0;
-    width: 100%;
+    width: 90%;
     &-info {
         display: flex;
         align-items: center;

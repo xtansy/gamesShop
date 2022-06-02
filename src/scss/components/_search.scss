@@ -40,9 +40,12 @@
         margin-top: 25px;
         z-index: 9;
     }
+    &__items > * {
+        width: 288px;
+    }
     &__items > *:not(:last-child) {
-        width: 298px;
-        margin-right: 55px;
+        margin-right: 42px;
+        margin-bottom: 35px;
     }
     overflow: auto;
 }
