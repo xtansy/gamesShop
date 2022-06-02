@@ -9,7 +9,7 @@ import Carousel from "../components/Carousel";
 import SearchGames from "../components/SearchGames";
 import Pagination from "../components/Pagination";
 
-import { fetchGames } from "../sliceces/gamesSlice";
+import { fetchGames, changePaginateCount } from "../sliceces/gamesSlice";
 import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
 import { addItem, deleteItem } from "../sliceces/cartSlice";
 

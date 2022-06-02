@@ -3,10 +3,12 @@
 }
 .content__items {
     width: 100%;
-    padding: 105px 150px 0 150px;
+    padding: 105px 150px 55px 150px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+}
+.content__items > *:not(:last-child) {
+    margin-right: 25px;
 }
 .content__filters {
     margin-top: 80px;

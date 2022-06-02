@@ -1,15 +1,13 @@
 .card {
-    max-width: 350px;
-    min-height: 420px;
+    max-width: 300px;
     padding-bottom: 15px;
-    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 11px;
     img {
-        transition: all 0.2s ease-in-out;
         border-radius: 11px;
+        transition: all 0.2s ease-in-out;
         -webkit-mask: url("../../assets/cardshadow.png") top left/contain;
     }
     position: relative;
@@ -35,6 +33,7 @@
         cursor: pointer;
     }
 }
+
 .card:hover {
     img {
         filter: brightness(70%);
