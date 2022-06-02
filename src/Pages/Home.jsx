@@ -153,6 +153,9 @@ const Home = () => {
                     <h1>Загрузка</h1>
                 )}
             </div>
+            {!games.length && (
+                <h1 className="content__items-clear">Пусто...</h1>
+            )}
 
             <Pagination activePage={paginateCount} gamesOnPage={4} />
         </>
