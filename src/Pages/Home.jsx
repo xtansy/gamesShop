@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../components/Card";
 import Categories from "../components/Categories";
@@ -9,11 +9,8 @@ import SearchGames from "../components/SearchGames";
 import Pagination from "../components/Pagination";
 import LoadingBlock from "../loadingComponents/CardLoadingBlock";
 
-import { fetchGames, changePaginateCount } from "../sliceces/gamesSlice";
+import { fetchGames } from "../sliceces/gamesSlice";
 import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
-import { addItem, deleteItem } from "../sliceces/cartSlice";
-
-import { postItem } from "../sliceces/favoritesSlice";
 
 const categories = [
     { name: "Все", type: null },
@@ -67,7 +64,12 @@ const gamesForSlider = [
     },
 ];
 
-const Home = () => {
+const Home = ({
+    onSelectDeleteItem,
+    onSelectBuy,
+    onSelectAddFavItem,
+    onSelectDeleteFavItem,
+}) => {
     const dispatch = useDispatch();
 
     const { games, isLoading, paginateCount } = useSelector(
@@ -88,19 +90,13 @@ const Home = () => {
         dispatch(selectPopup(type));
     };
 
-    const onSelectBuy = useCallback((item) => {
-        dispatch(addItem(item));
-    }, []);
-
-    const onSelectDeleteItem = useCallback((id, price) => {
-        dispatch(deleteItem({ id, price }));
-    }, []);
-
     return (
         <>
             <SearchGames
                 onSelectDeleteItem={onSelectDeleteItem}
                 onSelectBuy={onSelectBuy}
+                onSelectAddFavItem={onSelectAddFavItem}
+                onSelectDeleteFavItem={onSelectDeleteFavItem}
             />
 
             <Carousel>
@@ -137,6 +133,8 @@ const Home = () => {
                     ? games.map((item) => {
                           return (
                               <Card
+                                  onSelectDeleteFavItem={onSelectDeleteFavItem}
+                                  onSelectAddFavItem={onSelectAddFavItem}
                                   onSelectDeleteItem={onSelectDeleteItem}
                                   onSelectBuy={onSelectBuy}
                                   key={item.id}

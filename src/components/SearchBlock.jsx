@@ -3,7 +3,12 @@ import { useSelector } from "react-redux";
 
 import Card from "./Card";
 
-const SearchBlock = ({ onSelectDeleteItem, onSelectBuy }) => {
+const SearchBlock = ({
+    onSelectDeleteItem,
+    onSelectBuy,
+    onSelectAddFavItem,
+    onSelectDeleteFavItem,
+}) => {
     const { allGames, searchedStr } = useSelector((state) => state.games);
 
     const searched = allGames.filter((item) =>
@@ -19,6 +24,8 @@ const SearchBlock = ({ onSelectDeleteItem, onSelectBuy }) => {
                 {searched.map((item) => {
                     return (
                         <Card
+                            onSelectAddFavItem={onSelectAddFavItem}
+                            onSelectDeleteFavItem={onSelectDeleteFavItem}
                             onSelectDeleteItem={onSelectDeleteItem}
                             onSelectBuy={onSelectBuy}
                             key={item.id}

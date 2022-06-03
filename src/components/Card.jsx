@@ -1,8 +1,7 @@
 import React from "react";
 import like from "../assets/like.png";
 import Button from "./Button";
-import { useSelector, useDispatch } from "react-redux";
-import { postItem, deleteFavItem } from "../sliceces/favoritesSlice";
+import { useSelector } from "react-redux";
 
 const Card = ({
     name,
@@ -11,9 +10,9 @@ const Card = ({
     id,
     onSelectBuy,
     onSelectDeleteItem,
+    onSelectDeleteFavItem,
+    onSelectAddFavItem,
 }) => {
-    const dispatch = useDispatch();
-
     const { favorites } = useSelector((state) => state.favorites);
 
     const added = favorites.findIndex((item) => item.id === id) > -1;
@@ -26,11 +25,12 @@ const Card = ({
         onSelectDeleteItem(id, price);
     };
 
-    const onClickDeleteFavItem = () => {
-        dispatch(deleteFavItem(id));
-    };
     const onClickAddFavItem = () => {
-        dispatch(postItem({ id, name, imageUrl, price }));
+        onSelectAddFavItem({ id, name, imageUrl, price });
+    };
+
+    const onClickDeleteFavItem = () => {
+        onSelectDeleteFavItem(id);
     };
 
     return (

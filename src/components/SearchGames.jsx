@@ -4,7 +4,12 @@ import SearchBlock from "./SearchBlock";
 import { changeSearchedStr } from "../sliceces/gamesSlice";
 import { useDispatch } from "react-redux";
 
-const SearchGames = ({ onSelectDeleteItem, onSelectBuy }) => {
+const SearchGames = ({
+    onSelectDeleteItem,
+    onSelectBuy,
+    onSelectDeleteFavItem,
+    onSelectAddFavItem,
+}) => {
     const dispatch = useDispatch();
 
     const searchRef = useRef();
@@ -62,6 +67,8 @@ const SearchGames = ({ onSelectDeleteItem, onSelectBuy }) => {
                         term={term}
                         onSelectBuy={onSelectBuy}
                         onSelectDeleteItem={onSelectDeleteItem}
+                        onSelectDeleteFavItem={onSelectDeleteFavItem}
+                        onSelectAddFavItem={onSelectAddFavItem}
                     />
                 )}
             </div>
