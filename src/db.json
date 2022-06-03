@@ -67,6 +67,12 @@
       "name": "Resident Evil 2",
       "imageUrl": "card/ResidentEvil2.jpg",
       "price": 999
+    },
+    {
+      "id": 6,
+      "name": "Core Keeper",
+      "imageUrl": "card/CoreKeeper.jpg",
+      "price": 449
     }
   ]
 }

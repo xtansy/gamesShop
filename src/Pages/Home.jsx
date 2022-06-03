@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import Card from "../components/Card";
 import Categories from "../components/Categories";
 import SortPopup from "../components/SortPopup";
@@ -8,6 +7,7 @@ import CarouselItem from "../components/CarouselItem";
 import Carousel from "../components/Carousel";
 import SearchGames from "../components/SearchGames";
 import Pagination from "../components/Pagination";
+import LoadingBlock from "../loadingComponents/CardLoadingBlock";
 
 import { fetchGames, changePaginateCount } from "../sliceces/gamesSlice";
 import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
@@ -104,24 +104,20 @@ const Home = () => {
             />
 
             <Carousel>
-                {!isLoading ? (
-                    gamesForSlider.map((item) => {
-                        return (
-                            <CarouselItem
-                                key={item.id}
-                                id={item.id}
-                                onSelectBuy={onSelectBuy}
-                                onSelectDeleteItem={onSelectDeleteItem}
-                                name={item.name}
-                                price={item.price}
-                                imageUrl={item.imageUrl}
-                                bigImageUrl={item.bigImageUrl}
-                            />
-                        );
-                    })
-                ) : (
-                    <h1>Загрузка</h1>
-                )}
+                {gamesForSlider.map((item) => {
+                    return (
+                        <CarouselItem
+                            key={item.id}
+                            id={item.id}
+                            onSelectBuy={onSelectBuy}
+                            onSelectDeleteItem={onSelectDeleteItem}
+                            name={item.name}
+                            price={item.price}
+                            imageUrl={item.imageUrl}
+                            bigImageUrl={item.bigImageUrl}
+                        />
+                    );
+                })}
             </Carousel>
 
             <div className="content__filters">
@@ -137,23 +133,29 @@ const Home = () => {
                 />
             </div>
             <div className="content__items items-content">
-                {!isLoading ? (
-                    games.map((item) => {
-                        return (
-                            <Card
-                                onSelectDeleteItem={onSelectDeleteItem}
-                                onSelectBuy={onSelectBuy}
-                                key={item.id}
-                                name={item.name}
-                                price={item.price}
-                                imageUrl={item.imageUrl}
-                                id={item.id}
-                            />
-                        );
-                    })
-                ) : (
-                    <h1>Загрузка</h1>
-                )}
+                {!isLoading
+                    ? games.map((item) => {
+                          return (
+                              <Card
+                                  onSelectDeleteItem={onSelectDeleteItem}
+                                  onSelectBuy={onSelectBuy}
+                                  key={item.id}
+                                  name={item.name}
+                                  price={item.price}
+                                  imageUrl={item.imageUrl}
+                                  id={item.id}
+                              />
+                          );
+                      })
+                    : Array(4)
+                          .fill(0)
+                          .map((_, index) => (
+                              <LoadingBlock
+                                  width={300}
+                                  height={450}
+                                  key={index}
+                              />
+                          ))}
             </div>
             {!games.length && (
                 <h1 className="content__items-clear">Пусто...</h1>

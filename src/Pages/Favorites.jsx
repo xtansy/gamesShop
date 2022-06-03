@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "../sliceces/favoritesSlice";
+import LoadingBlock from "../loadingComponents/CardLoadingBlock";
 import Card from "../components/Card";
+import { addItem, deleteItem } from "../sliceces/cartSlice";
 
 const Favorites = () => {
     const dispatch = useDispatch();
@@ -12,27 +14,43 @@ const Favorites = () => {
         dispatch(getItems());
     }, []);
 
+    const onSelectBuy = useCallback((item) => {
+        dispatch(addItem(item));
+    }, []);
+
+    const onSelectDeleteItem = useCallback((id, price) => {
+        dispatch(deleteItem({ id, price }));
+    }, []);
+
     return (
         <div className="favorites _container">
             <h1 className="favorites__title">Избранное:</h1>
             <div className="favorites__items items-content">
                 {}
 
-                {!isLoading ? (
-                    favorites.map((item) => {
-                        return (
-                            <Card
-                                name={item.name}
-                                key={item.id}
-                                imageUrl={item.imageUrl}
-                                price={item.price}
-                                id={item.id}
-                            />
-                        );
-                    })
-                ) : (
-                    <h1>Загрузка</h1>
-                )}
+                {!isLoading
+                    ? favorites.map((item) => {
+                          return (
+                              <Card
+                                  onSelectBuy={onSelectBuy}
+                                  onSelectDeleteItem={onSelectDeleteItem}
+                                  name={item.name}
+                                  key={item.id}
+                                  imageUrl={item.imageUrl}
+                                  price={item.price}
+                                  id={item.id}
+                              />
+                          );
+                      })
+                    : Array(4)
+                          .fill(0)
+                          .map((_, index) => (
+                              <LoadingBlock
+                                  width={300}
+                                  height={450}
+                                  key={index}
+                              />
+                          ))}
             </div>
         </div>
     );
