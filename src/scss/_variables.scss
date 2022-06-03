@@ -20,3 +20,9 @@ $white: #ffffff;
 .button:hover {
     background: rgba(26, 111, 209, 0.808);
 }
+
+.items-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

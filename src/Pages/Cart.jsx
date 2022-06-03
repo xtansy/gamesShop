@@ -23,7 +23,7 @@ const Cart = () => {
     }, []);
 
     return (
-        <div className="cart">
+        <div className="cart _container">
             <div className="cart__content">
                 <h1>
                     МОЙ ЗАКАЗ <span>{totalCount}</span>

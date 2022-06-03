@@ -18,12 +18,14 @@ const Header = () => {
             </Link>
 
             <div className="header__settings">
-                <img
-                    src={like}
-                    width={36}
-                    className="header__settings-like"
-                    alt="img"
-                ></img>
+                <Link style={{ textDecoration: "none" }} to="/favorites">
+                    <img
+                        src={like}
+                        width={36}
+                        className="header__settings-like"
+                        alt="img"
+                    ></img>
+                </Link>
                 <Link style={{ textDecoration: "none" }} to="/cart">
                     <img
                         src={cart}

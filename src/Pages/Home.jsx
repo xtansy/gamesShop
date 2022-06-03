@@ -13,6 +13,8 @@ import { fetchGames, changePaginateCount } from "../sliceces/gamesSlice";
 import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
 import { addItem, deleteItem } from "../sliceces/cartSlice";
 
+import { postItem } from "../sliceces/favoritesSlice";
+
 const categories = [
     { name: "Все", type: null },
     { name: "новинки", type: "new" },
@@ -134,12 +136,11 @@ const Home = () => {
                     items={popup}
                 />
             </div>
-            <div className="content__items">
+            <div className="content__items items-content">
                 {!isLoading ? (
                     games.map((item) => {
                         return (
                             <Card
-                                onSelectDeleteItem={onSelectDeleteItem}
                                 onSelectBuy={onSelectBuy}
                                 key={item.id}
                                 name={item.name}

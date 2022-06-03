@@ -1,0 +1,11 @@
+.favorites {
+    &__title {
+        margin-bottom: 50px;
+    }
+    &__items {
+        flex-wrap: wrap;
+    }
+    &__items > * {
+        margin-bottom: 50px;
+    }
+}

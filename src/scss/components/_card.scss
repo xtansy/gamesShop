@@ -31,6 +31,9 @@
         top: 5%;
         right: 5%;
         cursor: pointer;
+        &_active {
+            background: red;
+        }
     }
 }
 
@@ -44,6 +47,7 @@
     .card__like {
         display: block;
     }
+
     border: 1px solid gold;
 }
 .card__name {
