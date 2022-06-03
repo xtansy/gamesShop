@@ -141,6 +141,7 @@ const Home = () => {
                     games.map((item) => {
                         return (
                             <Card
+                                onSelectDeleteItem={onSelectDeleteItem}
                                 onSelectBuy={onSelectBuy}
                                 key={item.id}
                                 name={item.name}
