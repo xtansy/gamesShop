@@ -23,8 +23,6 @@ const Favorites = ({
         <div className="favorites _container">
             <h1 className="favorites__title">Избранное:</h1>
             <div className="favorites__items items-content">
-                {}
-
                 {!isLoading
                     ? favorites.map((item) => {
                           return (
