@@ -28,7 +28,6 @@
     }
     img {
         display: none;
-        position: fixed;
     }
 }
 
@@ -56,7 +55,7 @@
     overflow: auto;
     &__close {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 9%;
         left: 9%;
     }
