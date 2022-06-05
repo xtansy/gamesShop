@@ -22,17 +22,17 @@
             font-size: 70px;
             margin-bottom: 25px;
         }
-        button {
-            line-height: 1.2;
-            padding: 11px 12px 8px;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
         span {
             margin-left: 15px;
             font-size: 18px;
         }
     }
+}
+.carousel__button {
+    line-height: 1.2;
+    padding: 11px 12px 8px;
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
 .main-container {

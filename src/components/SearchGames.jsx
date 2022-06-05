@@ -39,6 +39,7 @@ const SearchGames = ({
 
     const onClickClose = () => {
         setVisible(false);
+        document.body.style.overflow = "auto";
     };
 
     const handleOutsideClick = (e) => {

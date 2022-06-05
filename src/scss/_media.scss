@@ -196,5 +196,15 @@
     }
     .header {
         padding: 36px 8px;
+        &__settings-like {
+            margin-bottom: 10px;
+        }
+    }
+    .item__descr h1 {
+        font-size: 35px;
+    }
+    .button {
+        width: 115px;
+        font-size: 13px;
     }
 }
