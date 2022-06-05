@@ -24,8 +24,13 @@
     input:focus {
         background: white;
         color: black;
+        opacity: 0.6;
+    }
+    img {
+        display: none;
     }
 }
+
 .searchBlock {
     height: 100%;
     position: fixed;
@@ -48,4 +53,10 @@
         margin-bottom: 35px;
     }
     overflow: auto;
+    &__close {
+        display: none;
+        position: absolute;
+        top: 9%;
+        left: 9%;
+    }
 }

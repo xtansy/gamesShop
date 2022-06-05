@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../components/Card";
-import Categories from "../components/Categories";
-import SortPopup from "../components/SortPopup";
-import CarouselItem from "../components/CarouselItem";
-import Carousel from "../components/Carousel";
-import SearchGames from "../components/SearchGames";
-import Pagination from "../components/Pagination";
-import LoadingBlock from "../loadingComponents/CardLoadingBlock";
-
+import {
+    Card,
+    Categories,
+    SortPopup,
+    CarouselItem,
+    Carousel,
+    SearchGames,
+    Pagination,
+} from "../components";
+import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
 import { fetchGames } from "../sliceces/gamesSlice";
 import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
 
@@ -148,7 +149,7 @@ const Home = ({
                     : Array(4)
                           .fill(0)
                           .map((_, index) => (
-                              <LoadingBlock
+                              <CardLoadingBlock
                                   width={300}
                                   height={450}
                                   key={index}

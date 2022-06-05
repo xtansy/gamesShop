@@ -1,8 +1,10 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import debounce from "lodash.debounce";
-import SearchBlock from "./SearchBlock";
-import { changeSearchedStr } from "../sliceces/gamesSlice";
 import { useDispatch } from "react-redux";
+import debounce from "lodash.debounce";
+
+import { SearchBlock } from "./";
+import { changeSearchedStr } from "../sliceces/gamesSlice";
+import lupa from "../assets/lupa.png";
 
 const SearchGames = ({
     onSelectDeleteItem,
@@ -35,6 +37,10 @@ const SearchGames = ({
         []
     );
 
+    const onClickClose = () => {
+        setVisible(false);
+    };
+
     const handleOutsideClick = (e) => {
         if (
             !e.path.includes(searchBlockRef.current) &&
@@ -53,17 +59,24 @@ const SearchGames = ({
 
     return (
         <>
-            <div ref={searchRef} onClick={onClickSearch} className="search">
+            <div
+                style={{ width: visible && "43%" }}
+                ref={searchRef}
+                onClick={onClickSearch}
+                className="search"
+            >
+                {!visible && <img src={lupa} width={40} alt="img" />}
                 <input
+                    style={{ opacity: visible && 0.6 }}
                     onChange={onChangeInput}
                     type="text"
                     placeholder="Поиск..."
                 />
-                {/* <img src="" alt="img" /> */}
             </div>
             <div ref={searchBlockRef}>
                 {visible && (
                     <SearchBlock
+                        onClickClose={onClickClose}
                         term={term}
                         onSelectBuy={onSelectBuy}
                         onSelectDeleteItem={onSelectDeleteItem}

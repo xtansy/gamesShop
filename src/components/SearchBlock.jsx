@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import Card from "./Card";
+import { Card } from "./";
+import close from "../assets/deleteCart.png";
 
 const SearchBlock = ({
+    onClickClose,
     onSelectDeleteItem,
     onSelectBuy,
     onSelectAddFavItem,
@@ -17,6 +19,12 @@ const SearchBlock = ({
 
     return (
         <div className="searchBlock">
+            <img
+                onClick={onClickClose}
+                className="searchBlock__close"
+                src={close}
+                alt="close"
+            />
             <h2 className="searchBlock__title">
                 Результаты поиска: {searched.length}
             </h2>

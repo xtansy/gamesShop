@@ -40,7 +40,8 @@
 
     width: 100%;
 
-    height: 100vh;
+    height: 100vh; // !!!
+    position: relative;
 }
 
 .window {
@@ -62,12 +63,10 @@
     position: absolute;
     z-index: 2;
     top: 50%;
-}
-
-.arrow-right {
-    right: 5%;
-}
-
-.arrow-left {
-    left: 5%;
+    &-right {
+        right: 3%;
+    }
+    &-left {
+        left: 3%;
+    }
 }

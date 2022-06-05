@@ -1,6 +1,6 @@
 import React from "react";
 import like from "../assets/like.png";
-import Button from "./Button";
+import { Button } from "./";
 import { useSelector } from "react-redux";
 
 const Card = ({

@@ -1,10 +1,10 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const LoadingBlock = ({ width, height }) => {
+const CardLoadingBlock = ({ width, height }) => {
     return (
         <ContentLoader
-            speed={2}
+            speed={1}
             width={width}
             height={height}
             viewBox="0 0 298 370"
@@ -21,4 +21,4 @@ const LoadingBlock = ({ width, height }) => {
     );
 };
 
-export default LoadingBlock;
+export default CardLoadingBlock;

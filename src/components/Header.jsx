@@ -9,7 +9,7 @@ const Header = () => {
         <header className="header">
             <Link style={{ textDecoration: "none" }} to="/">
                 <div className="header__logo">
-                    <img src={vk} alt="logo" width={54} />
+                    <img src={vk} alt="logo" />
                     <div className="header__logo-content">
                         <h2>SkiddySell</h2>
                         <span>лучшие игры</span>

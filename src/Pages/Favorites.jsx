@@ -1,8 +1,9 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import { Card } from "../components";
+import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
 import { getItems } from "../sliceces/favoritesSlice";
-import LoadingBlock from "../loadingComponents/CardLoadingBlock";
-import Card from "../components/Card";
 
 const Favorites = ({
     onSelectDeleteItem,
@@ -43,7 +44,7 @@ const Favorites = ({
                     : Array(4)
                           .fill(0)
                           .map((_, index) => (
-                              <LoadingBlock
+                              <CardLoadingBlock
                                   width={300}
                                   height={450}
                                   key={index}

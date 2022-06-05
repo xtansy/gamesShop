@@ -1,8 +1,9 @@
 import React, { useCallback } from "react";
-import { Home, Cart, Favorites } from "./Pages";
-import Header from "./components/Header";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+
+import { Home, Cart, Favorites } from "./Pages";
+import { Header } from "./components";
 import { addItem, deleteItem } from "./sliceces/cartSlice";
 import { postItem, deleteFavItem } from "./sliceces/favoritesSlice";
 

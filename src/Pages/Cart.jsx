@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import CartItem from "../components/CartItem";
 import { useSelector, useDispatch } from "react-redux";
+
+import { CartItem } from "../components";
 import { deleteItem } from "../sliceces/cartSlice";
 import { changeSearchedStr } from "../sliceces/gamesSlice";
 

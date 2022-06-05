@@ -5,7 +5,7 @@ import { changePaginateCount } from "../sliceces/gamesSlice";
 const Pagination = ({ activePage, gamesOnPage }) => {
     const dispatch = useDispatch();
 
-    const { allGames, games } = useSelector((state) => state.games);
+    const { allGames } = useSelector((state) => state.games);
 
     const pagesLength = Math.ceil(allGames.length / gamesOnPage);
 
