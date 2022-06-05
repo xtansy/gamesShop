@@ -36,9 +36,6 @@
     .items-content {
         padding: 72px 68px 55px 67px;
     }
-    .pagination {
-        padding-left: 0;
-    }
 }
 
 @media (max-width: 1240px) {
@@ -203,6 +200,9 @@
     }
 }
 @media (max-width: 532px) {
+    .pagination {
+        padding: 0 0 150px 67px;
+    }
     .search {
         margin-left: 87px;
     }
