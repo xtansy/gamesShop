@@ -1,6 +1,8 @@
 # :video_game: Skiddy Sell :video_game:
 
-## Функционал:
+## :globe_with_meridians: [Деплой на heroku](https://skiddysell.herokuapp.com/)
+
+## :clipboard: Функционал:
 
 -   Фильтры
 -   Пагинация
