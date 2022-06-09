@@ -28,7 +28,7 @@ const popup = [
 ];
 const gamesForSlider = [
     {
-        id: 6,
+        id: 7,
         imageUrl: "card/CoreKeeper.jpg",
         bigImageUrl: "bigCard/CoreKeeper.jpg",
         name: "Core Keeper",
@@ -37,7 +37,7 @@ const gamesForSlider = [
         rating: 5,
     },
     {
-        id: 4,
+        id: 5,
         imageUrl: "card/ResidentEvil2.jpg",
         bigImageUrl: "bigCard/ResidentEvil2.jpg",
         name: "Resident Evil 2",
@@ -46,7 +46,7 @@ const gamesForSlider = [
         rating: 7,
     },
     {
-        id: 2,
+        id: 3,
         imageUrl: "card/hitman.jpg",
         bigImageUrl: "bigCard/hitman.jpg",
         name: "Hitman",
@@ -55,7 +55,7 @@ const gamesForSlider = [
         rating: 3,
     },
     {
-        id: 5,
+        id: 6,
         imageUrl: "card/overlord.jpg",
         bigImageUrl: "bigCard/overlord.jpg",
         name: "Stellaris: Overlord",
