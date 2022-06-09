@@ -50,6 +50,10 @@
 
     border: 1px solid gold;
 }
+.card__info {
+    display: flex;
+    flex-direction: column;
+}
 .card__name {
     padding: 0 8px;
     font-size: 19px;
@@ -60,4 +64,32 @@
     padding: 0 8px;
     font-size: 25px;
     color: white;
+}
+.cart__descr {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.card__cartcount {
+    display: flex;
+    color: white;
+    font-size: 25px;
+    margin-right: 15px;
+}
+.card__cartcount > * {
+    margin-right: 8px;
+    cursor: pointer;
+}
+.card__cartcount-count {
+    color: aqua;
+}
+.card__cartcount-plus,
+.card__cartcount-minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 31px;
+    border: 1px solid white;
+    border-radius: 100%;
 }

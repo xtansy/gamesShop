@@ -1,5 +1,6 @@
 import React from "react";
 import deleteItemPng from "../assets/deleteCart.png";
+import { CartCount } from "./";
 
 const CartItem = ({ id, name, imageUrl, price, onSelectDeleteItem }) => {
     const onClickDeleteItem = () => {
@@ -21,6 +22,9 @@ const CartItem = ({ id, name, imageUrl, price, onSelectDeleteItem }) => {
                         <p>{price} Р</p>
                     </div>
                 </div>
+
+                <CartCount id={id} />
+
                 <img
                     onClick={onClickDeleteItem}
                     className="cart__item-delete"

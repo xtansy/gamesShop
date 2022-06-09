@@ -9,3 +9,4 @@ export { default as Pagination } from "./Pagination";
 export { default as SearchBlock } from "./SearchBlock";
 export { default as SearchGames } from "./SearchGames";
 export { default as SortPopup } from "./SortPopup";
+export { default as CartCount } from "./CartCount";

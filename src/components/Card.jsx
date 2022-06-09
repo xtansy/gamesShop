@@ -1,6 +1,6 @@
 import React from "react";
 import like from "../assets/like.png";
-import { Button } from "./";
+import { Button, CartCount } from "./";
 import { useSelector } from "react-redux";
 
 const Card = ({
@@ -14,8 +14,7 @@ const Card = ({
     onSelectAddFavItem,
 }) => {
     const { favorites } = useSelector((state) => state.favorites);
-
-    const added = favorites.findIndex((item) => item.id === id) > -1;
+    const favoritesAdded = favorites.findIndex((item) => item.id === id) > -1;
 
     const onClickBuy = () => {
         onSelectBuy({ id, name, imageUrl, price });
@@ -40,15 +39,23 @@ const Card = ({
             <Button id={id} onAdd={onClickBuy} onDelete={onClickDeleteItem} />
 
             <img
-                onClick={added ? onClickDeleteFavItem : onClickAddFavItem}
-                className={`card__like ${added && "card__like_active"}`}
+                onClick={
+                    favoritesAdded ? onClickDeleteFavItem : onClickAddFavItem
+                }
+                className={`card__like ${
+                    favoritesAdded && "card__like_active"
+                }`}
                 width={36}
                 src={like}
                 alt="like"
             />
-
-            <p className="card__name">{name}</p>
-            <p className="card__price">{price} P</p>
+            <div className="cart__descr">
+                <div className="card__info">
+                    <p className="card__name">{name}</p>
+                    <p className="card__price">{price} P</p>
+                </div>
+                <CartCount id={id} />
+            </div>
         </div>
     );
 };
