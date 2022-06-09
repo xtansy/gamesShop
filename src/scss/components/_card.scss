@@ -80,9 +80,11 @@
 .card__cartcount > * {
     margin-right: 8px;
     cursor: pointer;
+    user-select: none;
 }
 .card__cartcount-count {
     color: aqua;
+    cursor: default;
 }
 .card__cartcount-plus,
 .card__cartcount-minus {
