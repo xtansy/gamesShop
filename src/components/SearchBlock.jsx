@@ -5,13 +5,7 @@ import close from "../assets/deleteCart.png";
 import { Card } from "./";
 import { gamesSelector } from "../redux/sliceces/gamesSlice";
 
-const SearchBlock = ({
-    onClickClose,
-    onSelectDeleteItem,
-    onSelectBuy,
-    onSelectAddFavItem,
-    onSelectDeleteFavItem,
-}) => {
+const SearchBlock = ({ onClickClose }) => {
     const { allGames, searchedStr } = useSelector(gamesSelector);
 
     const searched = allGames.filter((item) =>
@@ -31,16 +25,7 @@ const SearchBlock = ({
             </h2>
             <div className="searchBlock__items">
                 {searched.map((item) => {
-                    return (
-                        <Card
-                            onSelectAddFavItem={onSelectAddFavItem}
-                            onSelectDeleteFavItem={onSelectDeleteFavItem}
-                            onSelectDeleteItem={onSelectDeleteItem}
-                            onSelectBuy={onSelectBuy}
-                            key={item.id}
-                            {...item}
-                        />
-                    );
+                    return <Card key={item.id} {...item} />;
                 })}
             </div>
         </div>

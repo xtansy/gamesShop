@@ -1,20 +1,17 @@
 import React from "react";
-import { Button } from "./";
+import { useDispatch } from "react-redux";
 
-const CarouselItem = ({
-    id,
-    name,
-    price,
-    imageUrl,
-    bigImageUrl,
-    onSelectBuy,
-    onSelectDeleteItem,
-}) => {
+import { Button } from "./";
+import { addItem, deleteItem } from "../redux/sliceces/cartSlice";
+
+const CarouselItem = ({ id, name, price, imageUrl, bigImageUrl }) => {
+    const dispatch = useDispatch();
+
     const onClickBuy = () => {
-        onSelectBuy({ id, name, price, imageUrl });
+        dispatch(addItem({ id, name, price, imageUrl }));
     };
     const onClickDeleteItem = () => {
-        onSelectDeleteItem(id, price);
+        dispatch(deleteItem({ id, price }));
     };
 
     return (

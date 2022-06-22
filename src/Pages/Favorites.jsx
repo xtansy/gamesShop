@@ -3,20 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Card } from "../components";
 import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
-import { getItems, favoritesSelector } from "../redux/sliceces/favoritesSlice";
+import {
+    getFavItems,
+    favoritesSelector,
+} from "../redux/sliceces/favoritesSlice";
 
-const Favorites = ({
-    onSelectDeleteItem,
-    onSelectBuy,
-    onSelectAddFavItem,
-    onSelectDeleteFavItem,
-}) => {
+const Favorites = () => {
     const dispatch = useDispatch();
 
     const { favorites, isLoading } = useSelector(favoritesSelector);
 
     useEffect(() => {
-        dispatch(getItems());
+        dispatch(getFavItems());
     }, []);
 
     return (
@@ -27,10 +25,6 @@ const Favorites = ({
                     ? favorites.map((item) => {
                           return (
                               <Card
-                                  onSelectBuy={onSelectBuy}
-                                  onSelectDeleteItem={onSelectDeleteItem}
-                                  onSelectAddFavItem={onSelectAddFavItem}
-                                  onSelectDeleteFavItem={onSelectDeleteFavItem}
                                   name={item.name}
                                   key={item.id}
                                   imageUrl={item.imageUrl}

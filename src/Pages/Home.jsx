@@ -70,12 +70,7 @@ const gamesForSlider = [
     },
 ];
 
-const Home = ({
-    onSelectDeleteItem,
-    onSelectBuy,
-    onSelectAddFavItem,
-    onSelectDeleteFavItem,
-}) => {
+const Home = () => {
     const dispatch = useDispatch();
 
     const { games, isLoading, paginateCount } = useSelector(gamesSelector);
@@ -96,12 +91,7 @@ const Home = ({
 
     return (
         <>
-            <SearchGames
-                onSelectDeleteItem={onSelectDeleteItem}
-                onSelectBuy={onSelectBuy}
-                onSelectAddFavItem={onSelectAddFavItem}
-                onSelectDeleteFavItem={onSelectDeleteFavItem}
-            />
+            <SearchGames />
 
             <Carousel>
                 {gamesForSlider.map((item) => {
@@ -109,8 +99,6 @@ const Home = ({
                         <CarouselItem
                             key={item.id}
                             id={item.id}
-                            onSelectBuy={onSelectBuy}
-                            onSelectDeleteItem={onSelectDeleteItem}
                             name={item.name}
                             price={item.price}
                             imageUrl={item.imageUrl}
@@ -137,10 +125,6 @@ const Home = ({
                     ? games.map((item) => {
                           return (
                               <Card
-                                  onSelectDeleteFavItem={onSelectDeleteFavItem}
-                                  onSelectAddFavItem={onSelectAddFavItem}
-                                  onSelectDeleteItem={onSelectDeleteItem}
-                                  onSelectBuy={onSelectBuy}
                                   key={item.id}
                                   name={item.name}
                                   price={item.price}

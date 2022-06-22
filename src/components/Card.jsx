@@ -1,37 +1,35 @@
 import React from "react";
 import like from "../assets/like.png";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Button, CartCount } from "./";
-import { favoritesItemsSelector } from "../redux/sliceces/favoritesSlice";
+import {
+    favoritesItemsSelector,
+    postFavItem,
+    deleteFavItem,
+} from "../redux/sliceces/favoritesSlice";
+import { addItem, deleteItem } from "../redux/sliceces/cartSlice";
 
-const Card = ({
-    name,
-    price,
-    imageUrl,
-    id,
-    onSelectBuy,
-    onSelectDeleteItem,
-    onSelectDeleteFavItem,
-    onSelectAddFavItem,
-}) => {
+const Card = ({ name, price, imageUrl, id }) => {
+    const dispatch = useDispatch();
+
     const favorites = useSelector(favoritesItemsSelector);
     const favoritesAdded = favorites.findIndex((item) => item.id === id) > -1;
 
     const onClickBuy = () => {
-        onSelectBuy({ id, name, imageUrl, price });
+        dispatch(addItem({ id, name, imageUrl, price }));
     };
 
     const onClickDeleteItem = () => {
-        onSelectDeleteItem(id, price);
+        dispatch(deleteItem({ id, price }));
     };
 
     const onClickAddFavItem = () => {
-        onSelectAddFavItem({ id, name, imageUrl, price });
+        dispatch(postFavItem({ id, name, imageUrl, price }));
     };
 
     const onClickDeleteFavItem = () => {
-        onSelectDeleteFavItem(id);
+        dispatch(deleteFavItem(id));
     };
 
     return (

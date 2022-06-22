@@ -6,16 +6,16 @@ const initialState = {
     favorites: [],
 };
 
-export const getItems = createAsyncThunk("favorites/getItems", async () => {
+export const getFavItems = createAsyncThunk("favorites/getItems", async () => {
     const { data } = await axios.get("/favorites");
     return data;
 });
 
-export const postItem = createAsyncThunk(
+export const postFavItem = createAsyncThunk(
     "favorites/postItem",
     async (action) => {
         const { data } = await axios.post("/favorites", action);
-        return action;
+        return data;
     }
 );
 
@@ -35,16 +35,16 @@ const favorites = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(postItem.pending, (state) => {})
+            .addCase(postFavItem.pending, (state) => {})
 
-            .addCase(postItem.fulfilled, (state, action) => {
+            .addCase(postFavItem.fulfilled, (state, action) => {
                 state.favorites.push(action.payload);
             })
 
-            .addCase(getItems.pending, (state) => {
+            .addCase(getFavItems.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(getItems.fulfilled, (state, action) => {
+            .addCase(getFavItems.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.favorites = action.payload;
             })

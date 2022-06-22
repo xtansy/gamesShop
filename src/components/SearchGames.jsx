@@ -6,18 +6,12 @@ import { SearchBlock } from "./";
 import { changeSearchedStr } from "../redux/sliceces/gamesSlice";
 import lupa from "../assets/lupa.png";
 
-const SearchGames = ({
-    onSelectDeleteItem,
-    onSelectBuy,
-    onSelectDeleteFavItem,
-    onSelectAddFavItem,
-}) => {
+const SearchGames = () => {
     const dispatch = useDispatch();
 
     const searchRef = useRef();
     const searchBlockRef = useRef();
 
-    const [term, setTerm] = useState("");
     const [visible, setVisible] = useState(false);
 
     const onClickSearch = () => {
@@ -26,7 +20,6 @@ const SearchGames = ({
     };
 
     const onChangeInput = (e) => {
-        setTerm(e.target.value);
         onUpdateFilter(e.target.value);
     };
 
@@ -75,16 +68,7 @@ const SearchGames = ({
                 />
             </div>
             <div ref={searchBlockRef}>
-                {visible && (
-                    <SearchBlock
-                        onClickClose={onClickClose}
-                        term={term}
-                        onSelectBuy={onSelectBuy}
-                        onSelectDeleteItem={onSelectDeleteItem}
-                        onSelectDeleteFavItem={onSelectDeleteFavItem}
-                        onSelectAddFavItem={onSelectAddFavItem}
-                    />
-                )}
+                {visible && <SearchBlock onClickClose={onClickClose} />}
             </div>
         </>
     );
