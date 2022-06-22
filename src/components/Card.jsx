@@ -1,7 +1,9 @@
 import React from "react";
 import like from "../assets/like.png";
-import { Button, CartCount } from "./";
 import { useSelector } from "react-redux";
+
+import { Button, CartCount } from "./";
+import { favoritesItemsSelector } from "../redux/sliceces/favoritesSlice";
 
 const Card = ({
     name,
@@ -13,7 +15,7 @@ const Card = ({
     onSelectDeleteFavItem,
     onSelectAddFavItem,
 }) => {
-    const { favorites } = useSelector((state) => state.favorites);
+    const favorites = useSelector(favoritesItemsSelector);
     const favoritesAdded = favorites.findIndex((item) => item.id === id) > -1;
 
     const onClickBuy = () => {

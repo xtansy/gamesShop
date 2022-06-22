@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { CartItem } from "../components";
-import { deleteItem } from "../sliceces/cartSlice";
-import { changeSearchedStr } from "../sliceces/gamesSlice";
+import { deleteItem, cartSelector } from "../redux/sliceces/cartSlice";
+import { changeSearchedStr } from "../redux/sliceces/gamesSlice";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Cart = () => {
         cart: cartItems,
         totalPrice,
         totalCount,
-    } = useSelector((state) => state.cart);
+    } = useSelector(cartSelector);
 
     useEffect(() => {
         document.body.style.overflow = "auto";

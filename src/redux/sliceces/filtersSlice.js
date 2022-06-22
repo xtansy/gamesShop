@@ -23,5 +23,9 @@ const filters = createSlice({
 
 const { actions, reducer } = filters;
 
+const filtersSelector = (state) => state.filters;
+
 export default reducer;
 export const { selectCategory, selectPopup } = actions;
+
+export { filtersSelector };

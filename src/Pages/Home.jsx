@@ -10,8 +10,12 @@ import {
     Pagination,
 } from "../components";
 import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
-import { fetchGames } from "../sliceces/gamesSlice";
-import { selectCategory, selectPopup } from "../sliceces/filtersSlice";
+import { fetchGames, gamesSelector } from "../redux/sliceces/gamesSlice";
+import {
+    selectCategory,
+    selectPopup,
+    filtersSelector,
+} from "../redux/sliceces/filtersSlice";
 
 const categories = [
     { name: "Все", type: null },
@@ -26,6 +30,7 @@ const popup = [
     { name: "Популярности", type: "rating" },
     { name: "Алфавиту", type: "name" },
 ];
+
 const gamesForSlider = [
     {
         id: 7,
@@ -73,11 +78,9 @@ const Home = ({
 }) => {
     const dispatch = useDispatch();
 
-    const { games, isLoading, paginateCount } = useSelector(
-        (state) => state.games
-    );
+    const { games, isLoading, paginateCount } = useSelector(gamesSelector);
 
-    const { category, sortBy } = useSelector((state) => state.filters);
+    const { category, sortBy } = useSelector(filtersSelector);
 
     useEffect(() => {
         dispatch(fetchGames({ category, sortBy }));

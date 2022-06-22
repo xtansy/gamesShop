@@ -1,8 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import { cartItemsSelector } from "../redux/sliceces/cartSlice";
+
 const Button = ({ id, onAdd, onDelete, slider }) => {
-    const addedGames = useSelector((state) => state.cart.cart);
+    const addedGames = useSelector(cartItemsSelector);
 
     const isAdded = addedGames.findIndex((item) => item.id === id) > -1;
 

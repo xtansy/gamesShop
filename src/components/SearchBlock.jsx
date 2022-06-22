@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import close from "../assets/deleteCart.png";
 
 import { Card } from "./";
-import close from "../assets/deleteCart.png";
+import { gamesSelector } from "../redux/sliceces/gamesSlice";
 
 const SearchBlock = ({
     onClickClose,
@@ -11,7 +12,7 @@ const SearchBlock = ({
     onSelectAddFavItem,
     onSelectDeleteFavItem,
 }) => {
-    const { allGames, searchedStr } = useSelector((state) => state.games);
+    const { allGames, searchedStr } = useSelector(gamesSelector);
 
     const searched = allGames.filter((item) =>
         item.name.toLowerCase().includes(searchedStr.toLowerCase())

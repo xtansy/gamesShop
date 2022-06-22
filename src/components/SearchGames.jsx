@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
 
 import { SearchBlock } from "./";
-import { changeSearchedStr } from "../sliceces/gamesSlice";
+import { changeSearchedStr } from "../redux/sliceces/gamesSlice";
 import lupa from "../assets/lupa.png";
 
 const SearchGames = ({

@@ -1,11 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changePaginateCount } from "../sliceces/gamesSlice";
+
+import {
+    changePaginateCount,
+    allGamesSelector,
+} from "../redux/sliceces/gamesSlice";
 
 const Pagination = ({ activePage, gamesOnPage }) => {
     const dispatch = useDispatch();
 
-    const { allGames } = useSelector((state) => state.games);
+    const allGames = useSelector(allGamesSelector);
 
     const pagesLength = Math.ceil(allGames.length / gamesOnPage);
 

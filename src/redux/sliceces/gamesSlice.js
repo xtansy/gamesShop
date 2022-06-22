@@ -74,7 +74,12 @@ const games = createSlice({
     },
 });
 
+const allGamesSelector = (state) => state.games.allGames;
+const gamesSelector = (state) => state.games;
+
 const { actions, reducer } = games;
 
 export default reducer;
 export const { changeSearchedStr, changePaginateCount } = actions;
+
+export { allGamesSelector, gamesSelector };

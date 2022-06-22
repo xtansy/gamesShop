@@ -4,15 +4,11 @@ import { Routes, Route } from "react-router-dom";
 
 import { Home, Cart, Favorites } from "./Pages";
 import { Header } from "./components";
-import { addItem, deleteItem } from "./sliceces/cartSlice";
-import { postItem, deleteFavItem } from "./sliceces/favoritesSlice";
+import { addItem, deleteItem } from "./redux/sliceces/cartSlice";
+import { postItem, deleteFavItem } from "./redux/sliceces/favoritesSlice";
 
 function App() {
     const dispatch = useDispatch();
-
-    const onSelectDeleteFavItem = useCallback((id) => {
-        dispatch(deleteFavItem(id));
-    }, []);
 
     const onSelectBuy = useCallback((item) => {
         dispatch(addItem(item));
@@ -24,6 +20,10 @@ function App() {
 
     const onSelectAddFavItem = useCallback((item) => {
         dispatch(postItem(item));
+    }, []);
+
+    const onSelectDeleteFavItem = useCallback((id) => {
+        dispatch(deleteFavItem(id));
     }, []);
 
     return (

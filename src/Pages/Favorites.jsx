@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Card } from "../components";
 import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
-import { getItems } from "../sliceces/favoritesSlice";
+import { getItems, favoritesSelector } from "../redux/sliceces/favoritesSlice";
 
 const Favorites = ({
     onSelectDeleteItem,
@@ -13,7 +13,7 @@ const Favorites = ({
 }) => {
     const dispatch = useDispatch();
 
-    const { favorites, isLoading } = useSelector((state) => state.favorites);
+    const { favorites, isLoading } = useSelector(favoritesSelector);
 
     useEffect(() => {
         dispatch(getItems());
