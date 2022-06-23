@@ -1,9 +1,7 @@
-const express = require("express");
-const path = require("path");
-const jsonServer = require("json-server");
-const server = jsonServer.create();
-const router = jsonServer.router("./src/db.json");
-const middlewares = jsonServer.defaults({
+import { create, router as _router, defaults } from "json-server";
+const server = create();
+const router = _router("./src/db.json");
+const middlewares = defaults({
     static: "./build",
 });
 
@@ -11,13 +9,6 @@ const PORT = process.env.PORT || 3001;
 
 server.use(middlewares);
 server.use(router);
-
-if (process.env.NODE_ENV === "production") {
-    server.use(express.static("build"));
-    server.get("/cart", (req, res) => {
-        req.sendFile(path.resolve(__dirname, "build", "index.html"));
-    });
-}
 
 server.listen(PORT, () => {
     console.log("Server is running");
