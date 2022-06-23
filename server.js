@@ -14,7 +14,7 @@ server.use(router);
 
 if (process.env.NODE_ENV === "production") {
     server.use(express.static("build"));
-    server.get("/", (req, res) => {
+    server.get("/cart", (req, res) => {
         req.sendFile(path.resolve(__dirname, "build", "index.html"));
     });
 }
