@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { IGames, Game } from "./types";
 import { RootState } from "../../store";
@@ -55,14 +55,14 @@ const games = createSlice({
     name: "games",
     initialState,
     reducers: {
-        changeSearchedStr: (state, action) => {
+        changeSearchedStr: (state, action: PayloadAction<string>) => {
             if (action.payload.length === 0) {
                 state.searchedStr = "";
                 return;
             }
             state.searchedStr = action.payload;
         },
-        changePaginateCount: (state, action) => {
+        changePaginateCount: (state, action: PayloadAction<number>) => {
             state.paginateCount = action.payload;
         },
     },

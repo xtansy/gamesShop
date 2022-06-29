@@ -5,7 +5,7 @@ import { CartItem } from "../components";
 import { cartSelector } from "../redux/sliceces/cart/cartSlice";
 import { changeSearchedStr } from "../redux/sliceces/games/gamesSlice";
 
-const Cart = () => {
+const Cart: React.FC = () => {
     const dispatch = useDispatch();
 
     const {
