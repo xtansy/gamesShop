@@ -5,9 +5,10 @@ import right from "../assets/right-arrow.png";
 
 type CarouselProps = {
     children: ReactElement[];
+    visibleSearch: boolean;
 };
 
-const Carousel: React.FC<CarouselProps> = ({ children }) => {
+const Carousel: React.FC<CarouselProps> = ({ children, visibleSearch }) => {
     const [offset, setOffset] = useState(0);
 
     const [count, setCount] = useState(0);
@@ -15,13 +16,16 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
     const onClickLeft = () => {
         if (count === 0) {
             setCount(Children.count(children) - 1);
-            setOffset(
+
+            const size =
                 -document.documentElement.clientWidth *
-                    (Children.count(children) - 1)
-            );
+                (Children.count(children) - 1);
+
+            setOffset(size);
         } else {
             setCount(count - 1);
-            setOffset(offset + document.documentElement.clientWidth);
+            const size = offset + document.documentElement.clientWidth;
+            setOffset(size);
         }
     };
 
@@ -38,7 +42,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
     return (
         <div className="main-container">
             <img
-                onClick={onClickLeft}
+                onClick={!visibleSearch ? onClickLeft : () => {}}
                 className="arrow arrow-left"
                 src={left}
                 width={45}

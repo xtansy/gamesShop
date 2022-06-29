@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
     Card,
@@ -83,6 +83,8 @@ const gamesForSlider: GameForSlider[] = [
 ];
 
 const Home: React.FC = () => {
+    const [visibleSearch, setVisibleSearch] = useState(false);
+
     const dispatch = useAppDispatch();
 
     const { games, isLoading, paginateCount } = useSelector(gamesSelector);
@@ -103,9 +105,12 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <SearchGames />
+            <SearchGames
+                visibleSearch={visibleSearch}
+                setVisibleSearch={setVisibleSearch}
+            />
 
-            <Carousel>
+            <Carousel visibleSearch={visibleSearch}>
                 {gamesForSlider.map((item) => {
                     return (
                         <CarouselItem
