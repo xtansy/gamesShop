@@ -1,25 +1,29 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
     changePaginateCount,
     allGamesSelector,
-} from "../redux/sliceces/gamesSlice";
+} from "../redux/sliceces/games/gamesSlice";
 
-const Pagination = ({ activePage, gamesOnPage }) => {
+type PaginationProps = {
+    activePage: number;
+    gamesOnPage: number;
+};
+
+const Pagination: React.FC<PaginationProps> = ({ activePage, gamesOnPage }) => {
     const dispatch = useDispatch();
 
     const allGames = useSelector(allGamesSelector);
 
     const pagesLength = Math.ceil(allGames.length / gamesOnPage);
 
-    const onClickPaginationLi = (index) => {
+    const onClickPaginationLi = (index: number) => {
         dispatch(changePaginateCount(index));
     };
 
     return (
         <ul className="pagination">
-            {allGames.map((_, i) => {
+            {allGames.map((_, i: number) => {
                 if (i < pagesLength) {
                     return (
                         <li

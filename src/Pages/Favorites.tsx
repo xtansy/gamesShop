@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Card } from "../components";
 import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
 import {
     getFavItems,
     favoritesSelector,
-} from "../redux/sliceces/favoritesSlice";
+} from "../redux/sliceces/favorites/favoritesSlice";
+import { useAppDispatch } from "../redux/store";
 
 const Favorites = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const { favorites, isLoading } = useSelector(favoritesSelector);
 

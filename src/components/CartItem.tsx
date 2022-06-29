@@ -1,17 +1,21 @@
-import React from "react";
 import deleteItemPng from "../assets/deleteCart.png";
 import { useDispatch } from "react-redux";
 
-import { CartCount } from "./";
-import { deleteItem } from "../redux/sliceces/cartSlice";
+import { CartCount } from ".";
+import { deleteItem } from "../redux/sliceces/cart/cartSlice";
 
-const CartItem = ({ id, name, imageUrl, price, onSelectDeleteItem }) => {
+type CartItemProps = {
+    id: number;
+    name: string;
+    imageUrl: string;
+    price: number;
+};
+
+const CartItem: React.FC<CartItemProps> = ({ id, name, imageUrl, price }) => {
     const dispatch = useDispatch();
 
     const onClickDeleteItem = () => {
-        // onSelectDeleteItem(id, price);
-
-        dispatch(deleteItem({ id, price }));
+        dispatch(deleteItem(id));
     };
 
     return (

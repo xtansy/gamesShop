@@ -2,16 +2,33 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { Button } from "./";
-import { addItem, deleteItem } from "../redux/sliceces/cartSlice";
+import { addItem, deleteItem } from "../redux/sliceces/cart/cartSlice";
+import { CartItem } from "../redux/sliceces/cart/types";
 
-const CarouselItem = ({ id, name, price, imageUrl, bigImageUrl }) => {
+type CarouselItemProps = {
+    id: number;
+    name: string;
+    price: number;
+    imageUrl: string;
+    bigImageUrl: string;
+};
+
+const CarouselItem: React.FC<CarouselItemProps> = ({
+    id,
+    name,
+    price,
+    imageUrl,
+    bigImageUrl,
+}) => {
     const dispatch = useDispatch();
 
     const onClickBuy = () => {
-        dispatch(addItem({ id, name, price, imageUrl }));
+        const item: CartItem = { id, name, imageUrl, price, count: 1 };
+
+        dispatch(addItem(item));
     };
     const onClickDeleteItem = () => {
-        dispatch(deleteItem({ id, price }));
+        dispatch(deleteItem(id));
     };
 
     return (
@@ -33,4 +50,4 @@ const CarouselItem = ({ id, name, price, imageUrl, bigImageUrl }) => {
     );
 };
 
-export default React.memo(CarouselItem);
+export default CarouselItem;

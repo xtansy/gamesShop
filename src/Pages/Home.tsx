@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
     Card,
     Categories,
@@ -10,12 +10,24 @@ import {
     Pagination,
 } from "../components";
 import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
-import { fetchGames, gamesSelector } from "../redux/sliceces/gamesSlice";
+import { fetchGames, gamesSelector } from "../redux/sliceces/games/gamesSlice";
 import {
     selectCategory,
     selectPopup,
     filtersSelector,
-} from "../redux/sliceces/filtersSlice";
+} from "../redux/sliceces/filters/filtersSlice";
+import { useAppDispatch } from "../redux/store";
+import { typeOfSort } from "../redux/sliceces/filters/type";
+
+type GameForSlider = {
+    id: number;
+    type: string;
+    name: string;
+    price: number;
+    rating: number;
+    imageUrl: string;
+    bigImageUrl: string;
+};
 
 const categories = [
     { name: "Все", type: null },
@@ -25,13 +37,13 @@ const categories = [
     { name: "открытый мир", type: "world" },
 ];
 
-const popup = [
+const popup: typeOfSort[] = [
     { name: "Цене", type: "price" },
     { name: "Популярности", type: "rating" },
     { name: "Алфавиту", type: "name" },
 ];
 
-const gamesForSlider = [
+const gamesForSlider: GameForSlider[] = [
     {
         id: 7,
         imageUrl: "card/CoreKeeper.jpg",
@@ -70,8 +82,8 @@ const gamesForSlider = [
     },
 ];
 
-const Home = () => {
-    const dispatch = useDispatch();
+const Home: React.FC = () => {
+    const dispatch = useAppDispatch();
 
     const { games, isLoading, paginateCount } = useSelector(gamesSelector);
 
@@ -81,11 +93,11 @@ const Home = () => {
         dispatch(fetchGames({ category, sortBy }));
     }, [category, sortBy, paginateCount]);
 
-    const onSelectCategory = (type) => {
+    const onSelectCategory = (type: string | null) => {
         dispatch(selectCategory(type));
     };
 
-    const onSelectPopup = (type) => {
+    const onSelectPopup = (type: typeOfSort) => {
         dispatch(selectPopup(type));
     };
 
@@ -115,9 +127,9 @@ const Home = () => {
                     activeCategory={category}
                 />
                 <SortPopup
+                    items={popup}
                     sortBy={sortBy}
                     onSelectPopup={onSelectPopup}
-                    items={popup}
                 />
             </div>
             <div className="content__items items-content">

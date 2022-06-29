@@ -1,7 +1,14 @@
-import React from "react";
 import ContentLoader from "react-content-loader";
 
-const CardLoadingBlock = ({ width, height }) => {
+type CardLoadingBlockProps = {
+    width: number;
+    height: number;
+};
+
+const CardLoadingBlock: React.FC<CardLoadingBlockProps> = ({
+    width,
+    height,
+}) => {
     return (
         <ContentLoader
             speed={1}

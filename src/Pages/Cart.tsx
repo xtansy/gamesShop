@@ -1,16 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { CartItem } from "../components";
-import { deleteItem, cartSelector } from "../redux/sliceces/cartSlice";
-import { changeSearchedStr } from "../redux/sliceces/gamesSlice";
+import { cartSelector } from "../redux/sliceces/cart/cartSlice";
+import { changeSearchedStr } from "../redux/sliceces/games/gamesSlice";
 
 const Cart = () => {
     const dispatch = useDispatch();
-
-    const onSelectDeleteItem = (id, price) => {
-        dispatch(deleteItem({ id, price }));
-    };
 
     const {
         cart: cartItems,
@@ -33,7 +29,6 @@ const Cart = () => {
                 {cartItems.map((item) => {
                     return (
                         <CartItem
-                            onSelectDeleteItem={onSelectDeleteItem}
                             name={item.name}
                             key={item.id}
                             imageUrl={item.imageUrl}

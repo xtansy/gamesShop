@@ -151,7 +151,7 @@
     .search {
         top: 6%;
         input {
-            opacity: 0;
+            opacity: 0 !important;
         }
         img {
             position: absolute;
@@ -159,7 +159,7 @@
         }
         margin-left: 145px;
 
-        width: 7%;
+        width: 7% !important;
     }
     .searchBlock {
         padding: 150px 102px;

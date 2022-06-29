@@ -1,44 +1,55 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { IGames, Game } from "./types";
+import { RootState } from "../../store";
+import { IFilter } from "../filters/type";
 
-const initialState = {
+const initialState: IGames = {
     games: [],
     allGames: [],
     searchedStr: "",
     isLoading: false,
     paginateCount: 1,
 };
-export const fetchGames = createAsyncThunk(
-    "games/fetchGames",
-    async (action, state) => {
-        const { category, sortBy } = action;
+type fetchGamesResult = {
+    filteredGames: Game[];
+    allGames?: Game[];
+};
 
-        const categoryParams = `${category ? `type=${category}` : ""}`;
+export const fetchGames = createAsyncThunk<
+    fetchGamesResult,
+    IFilter,
+    {
+        state: RootState;
+    }
+>("games/fetchGames", async (action, state) => {
+    const { category, sortBy } = action;
 
-        const sortByParams = `${
-            sortBy.type ? `&_sort=${sortBy.type.type}` : ""
-        }&_order=${sortBy.order}`;
+    const categoryParams = `${category ? `type=${category}` : ""}`;
 
-        const paginationParams = `&_page=${
-            state.getState().games.paginateCount
-        }&_limit=4`;
+    const sortByParams = `${
+        sortBy.type ? `&_sort=${sortBy.type.type}` : ""
+    }&_order=${sortBy.order}`;
 
-        if (!state.getState().games.allGames.length) {
-            const { data: allGames } = await axios.get(`/games`);
+    const paginationParams = `&_page=${
+        state.getState().games.paginateCount
+    }&_limit=4`;
 
-            const { data: filteredGames } = await axios.get(
-                `/games?${categoryParams + sortByParams + paginationParams}`
-            );
-
-            return { allGames, filteredGames };
-        }
+    if (!state.getState().games.allGames.length) {
+        const { data: allGames } = await axios.get(`/games`);
 
         const { data: filteredGames } = await axios.get(
             `/games?${categoryParams + sortByParams + paginationParams}`
         );
-        return { filteredGames };
+
+        return { allGames, filteredGames };
     }
-);
+
+    const { data: filteredGames } = await axios.get(
+        `/games?${categoryParams + sortByParams + paginationParams}`
+    );
+    return { filteredGames };
+});
 
 const games = createSlice({
     name: "games",
@@ -63,8 +74,9 @@ const games = createSlice({
             .addCase(fetchGames.fulfilled, (state, action) => {
                 state.games = action.payload.filteredGames;
 
-                !state.allGames.length &&
-                    (state.allGames = action.payload.allGames);
+                if (action.payload.allGames !== undefined) {
+                    state.allGames = action.payload.allGames;
+                }
 
                 state.isLoading = false;
             })
@@ -74,8 +86,8 @@ const games = createSlice({
     },
 });
 
-const allGamesSelector = (state) => state.games.allGames;
-const gamesSelector = (state) => state.games;
+const allGamesSelector = (state: RootState) => state.games.allGames;
+const gamesSelector = (state: RootState) => state.games;
 
 const { actions, reducer } = games;
 

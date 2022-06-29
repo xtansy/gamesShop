@@ -1,20 +1,39 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { typeOfSort } from "../redux/sliceces/filters/type";
 
-const SortPopup = ({ items, onSelectPopup, sortBy }) => {
+type PopupClick = MouseEvent & {
+    path: Node[];
+};
+
+type SortPopupProps = {
+    items: typeOfSort[];
+    sortBy: {
+        type: typeOfSort;
+        order: string;
+    };
+    onSelectPopup: (setting: typeOfSort) => void;
+};
+
+const SortPopup: React.FC<SortPopupProps> = ({
+    items,
+    onSelectPopup,
+    sortBy,
+}) => {
     const [visible, setVisible] = useState(false);
 
-    const sortRef = useRef();
+    const sortRef = useRef<HTMLDivElement>(null);
 
     const toggleVisiblePopup = () => {
         setVisible(!visible);
     };
-    const handleOutsideClick = (e) => {
-        if (!e.path.includes(sortRef.current)) {
+    const handleOutsideClick = (e: MouseEvent) => {
+        const _e = e as PopupClick;
+        if (sortRef.current && !_e.path.includes(sortRef.current)) {
             setVisible(false);
         }
     };
 
-    const onClickItemPopup = (type) => {
+    const onClickItemPopup = (type: typeOfSort) => {
         setVisible(false);
         onSelectPopup(type);
     };

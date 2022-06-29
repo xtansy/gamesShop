@@ -1,13 +1,15 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
     plusItemCount,
-    MinusItemCount,
+    minusItemCount,
     cartItemsSelector,
-} from "../redux/sliceces/cartSlice";
+} from "../redux/sliceces/cart/cartSlice";
 
-const CartCount = ({ id }) => {
+type CartCountProps = {
+    id: number;
+};
+const CartCount: React.FC<CartCountProps> = ({ id }) => {
     const dispatch = useDispatch();
 
     const cart = useSelector(cartItemsSelector);
@@ -19,7 +21,7 @@ const CartCount = ({ id }) => {
     };
 
     const onClickMinusCartItem = () => {
-        dispatch(MinusItemCount(id));
+        dispatch(minusItemCount(id));
     };
 
     return (

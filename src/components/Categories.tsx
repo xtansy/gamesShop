@@ -1,7 +1,19 @@
-import React from "react";
+type CategoriesSetting = {
+    name: string;
+    type: string | null;
+};
+type CategoriesProps = {
+    categories: CategoriesSetting[];
+    onSelectCategory: (setting: string | null) => void;
+    activeCategory: string | null;
+};
 
-const Categories = ({ categories, onSelectCategory, activeCategory }) => {
-    const onClickCategory = (type) => {
+const Categories: React.FC<CategoriesProps> = ({
+    categories,
+    onSelectCategory,
+    activeCategory,
+}) => {
+    const onClickCategory = (type: string | null) => {
         onSelectCategory(type);
     };
     return (

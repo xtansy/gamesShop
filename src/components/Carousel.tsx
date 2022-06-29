@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import { memo, Children, ReactElement, useState } from "react";
 
 import left from "../assets/left-arrow.png";
 import right from "../assets/right-arrow.png";
 
-const Carousel = ({ children }) => {
+type CarouselProps = {
+    children: ReactElement[];
+};
+
+const Carousel: React.FC<CarouselProps> = ({ children }) => {
     const [offset, setOffset] = useState(0);
 
     const [count, setCount] = useState(0);
 
     const onClickLeft = () => {
         if (count === 0) {
-            setCount(children.length - 1);
+            setCount(Children.count(children) - 1);
             setOffset(
-                -document.documentElement.clientWidth * (children.length - 1)
+                -document.documentElement.clientWidth *
+                    (Children.count(children) - 1)
             );
         } else {
             setCount(count - 1);
@@ -21,7 +26,7 @@ const Carousel = ({ children }) => {
     };
 
     const onClickRight = () => {
-        if (count === children.length - 1) {
+        if (count === Children.count(children) - 1) {
             setCount(0);
             setOffset(0);
         } else {
@@ -60,4 +65,4 @@ const Carousel = ({ children }) => {
     );
 };
 
-export default React.memo(Carousel);
+export default memo(Carousel);

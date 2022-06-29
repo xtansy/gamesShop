@@ -1,6 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+import { RootState } from "../../store";
+import { IFilter, typeOfSort } from "./type";
+
+const initialState: IFilter = {
     category: null,
     sortBy: {
         type: { name: "Популярности", type: "rating" },
@@ -12,10 +15,10 @@ const filters = createSlice({
     name: "filters",
     initialState,
     reducers: {
-        selectCategory: (state, action) => {
+        selectCategory: (state, action: PayloadAction<string | null>) => {
             state.category = action.payload;
         },
-        selectPopup: (state, action) => {
+        selectPopup: (state, action: PayloadAction<typeOfSort>) => {
             state.sortBy.type = action.payload;
         },
     },
@@ -23,7 +26,7 @@ const filters = createSlice({
 
 const { actions, reducer } = filters;
 
-const filtersSelector = (state) => state.filters;
+const filtersSelector = (state: RootState) => state.filters;
 
 export default reducer;
 export const { selectCategory, selectPopup } = actions;

@@ -1,11 +1,14 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import close from "../assets/deleteCart.png";
 
-import { Card } from "./";
-import { gamesSelector } from "../redux/sliceces/gamesSlice";
+import { Card } from ".";
+import { gamesSelector } from "../redux/sliceces/games/gamesSlice";
 
-const SearchBlock = ({ onClickClose }) => {
+type SearchBlockProps = {
+    onClickClose: () => void;
+};
+
+const SearchBlock: React.FC<SearchBlockProps> = ({ onClickClose }) => {
     const { allGames, searchedStr } = useSelector(gamesSelector);
 
     const searched = allGames.filter((item) =>

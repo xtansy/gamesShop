@@ -1,9 +1,15 @@
-import React from "react";
 import { useSelector } from "react-redux";
 
-import { cartItemsSelector } from "../redux/sliceces/cartSlice";
+import { cartItemsSelector } from "../redux/sliceces/cart/cartSlice";
 
-const Button = ({ id, onAdd, onDelete, slider }) => {
+type ButtonProps = {
+    id: number;
+    onAdd: () => void;
+    onDelete: () => void;
+    slider?: boolean;
+};
+
+const Button: React.FC<ButtonProps> = ({ id, onAdd, onDelete, slider }) => {
     const addedGames = useSelector(cartItemsSelector);
 
     const isAdded = addedGames.findIndex((item) => item.id === id) > -1;
