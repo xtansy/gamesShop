@@ -1,7 +1,9 @@
 $white: #ffffff;
+$button-background: rgb(26, 111, 209);
 
 // button
 .button {
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -10,19 +12,48 @@ $white: #ffffff;
     border: none;
     width: 150px;
     border-radius: 10px;
-    color: white;
+    color: $white;
+    background: $button-background;
     padding: 15px;
     font-size: 20px;
     cursor: pointer;
     text-transform: uppercase;
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .button:hover {
     background: rgba(26, 111, 209, 0.808);
+}
+.button:active {
+    background: darken($color: $button-background, $amount: 7%);
 }
 
 .items-content {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.empty {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__subtitle {
+        color: rgba(226, 222, 222, 0.329);
+        font-size: 16px;
+    }
+    &__button {
+        font-size: 16px;
+        transition: background 0.2s ease-in-out;
+        min-width: 200px;
+        img {
+            margin-right: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+    }
+    &__button:hover {
+        img {
+            transform: translateX(5px);
+        }
+    }
 }

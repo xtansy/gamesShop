@@ -26,6 +26,10 @@
             margin-left: 15px;
             font-size: 18px;
         }
+        &-add {
+            display: flex;
+            align-items: center;
+        }
     }
 }
 .carousel__button {
@@ -33,6 +37,9 @@
     padding: 11px 12px 8px;
     font-size: 18px;
     text-transform: uppercase;
+    &__delete {
+        font-size: 15px;
+    }
 }
 
 .main-container {

@@ -18,11 +18,11 @@
         left: 50%;
         transform: translateX(-50%);
 
-        display: none;
+        // display: none;
 
         &_delete {
             text-transform: lowercase;
-            width: 200px;
+            width: 143px;
         }
     }
     &__like {

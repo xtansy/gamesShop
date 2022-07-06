@@ -36,14 +36,16 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
             <div className="item__descr">
                 <h1>{name}</h1>
 
-                <Button
-                    slider
-                    id={id}
-                    onAdd={onClickBuy}
-                    onDelete={onClickDeleteItem}
-                />
+                <div className="item__descr-add">
+                    <Button
+                        slider
+                        id={id}
+                        onAdd={onClickBuy}
+                        onDelete={onClickDeleteItem}
+                    />
 
-                <span>{price} Р</span>
+                    <span>{price} Р</span>
+                </div>
             </div>
             <img src={bigImageUrl} alt="img"></img>
         </div>

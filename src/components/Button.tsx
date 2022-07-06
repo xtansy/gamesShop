@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({ id, onAdd, onDelete, slider }) => {
                     onClick={onDelete}
                     className={`button ${
                         slider
-                            ? "carousel__button"
+                            ? "carousel__button carousel__button__delete"
                             : "card__button card__button_delete"
                     }`}
                 >

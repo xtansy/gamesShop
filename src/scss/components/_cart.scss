@@ -68,3 +68,11 @@
         -webkit-mask: url("../../assets/cardshadow.png") top left/contain;
     }
 }
+
+.cart__empty-container__title {
+    margin-bottom: 50px;
+}
+
+.cart__empty > * {
+    margin-top: 19px;
+}

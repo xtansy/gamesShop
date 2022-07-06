@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { Card } from "../components";
 import CardLoadingBlock from "../loadingComponents/CardLoadingBlock";
@@ -17,6 +18,34 @@ const Favorites = () => {
     useEffect(() => {
         dispatch(getFavItems());
     }, []);
+
+    if (favorites.length === 0) {
+        return (
+            <div className="favorites _container">
+                <h1 className="favorites__title">Избранное:</h1>
+
+                <div className="favorites__empty empty">
+                    <h2 className="favorites__empty-title empty__title">
+                        Избранных товаров нет :(
+                    </h2>
+                    <img
+                        width={250}
+                        src="favoritesIcons/sadGamer.png"
+                        alt="sadGamer"
+                    />
+                    <p className="favorites__empty-subtitle empty__subtitle">
+                        Вы ничего не добавили в избранное
+                    </p>
+                    <Link style={{ textDecoration: "none" }} to="/">
+                        <button className="button favorites__empty-button empty__button">
+                            <img src="button/arrow-left.svg" alt="arrow-left" />
+                            Вернуться назад
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="favorites _container">
