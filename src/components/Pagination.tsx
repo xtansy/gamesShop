@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { memo } from "react";
 
 import {
     changePaginateCount,
@@ -42,4 +43,4 @@ const Pagination: React.FC<PaginationProps> = ({ activePage, gamesOnPage }) => {
     );
 };
 
-export default Pagination;
+export default memo(Pagination);

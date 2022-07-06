@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type CategoriesSetting = {
     name: string;
     type: string | null;
@@ -38,4 +40,4 @@ const Categories: React.FC<CategoriesProps> = ({
     );
 };
 
-export default Categories;
+export default memo(Categories);

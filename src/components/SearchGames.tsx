@@ -1,10 +1,12 @@
-import { useCallback, useRef, useEffect, ChangeEvent } from "react";
+import { useCallback, useRef, useEffect, ChangeEvent, memo } from "react";
 import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
 
 import { SearchBlock } from "./";
 import { changeSearchedStr } from "../redux/sliceces/games/gamesSlice";
 import lupa from "../assets/lupa.png";
+
+// import { useWhyDidYouUpdate } from "ahooks";
 
 type SearchClick = MouseEvent & {
     path: Node[];
@@ -19,6 +21,11 @@ const SearchGames: React.FC<SearchGamesProps> = ({
     visibleSearch,
     setVisibleSearch,
 }) => {
+    // useWhyDidYouUpdate("useWhyDidYouUpdateComponent", {
+    //     visibleSearch,
+    //     setVisibleSearch,
+    // });
+
     const dispatch = useDispatch();
 
     const searchRef = useRef<HTMLDivElement>(null);
@@ -41,11 +48,11 @@ const SearchGames: React.FC<SearchGamesProps> = ({
         []
     );
 
-    const onClickClose = () => {
+    const onClickClose = useCallback(() => {
         setVisibleSearch(false);
         document.body.style.overflow = "auto";
         document.body.style.paddingRight = "0px";
-    };
+    }, []);
 
     const handleOutsideClick = (e: MouseEvent) => {
         const _e = e as SearchClick;
@@ -90,4 +97,4 @@ const SearchGames: React.FC<SearchGamesProps> = ({
     );
 };
 
-export default SearchGames;
+export default memo(SearchGames);

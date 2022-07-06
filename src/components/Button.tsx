@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import { memo } from "react";
 import { cartItemsSelector } from "../redux/sliceces/cart/cartSlice";
 
 type ButtonProps = {
@@ -41,4 +41,4 @@ const Button: React.FC<ButtonProps> = ({ id, onAdd, onDelete, slider }) => {
     );
 };
 
-export default Button;
+export default memo(Button);

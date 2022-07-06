@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import { typeOfSort } from "../redux/sliceces/filters/type";
 
 type PopupClick = MouseEvent & {
@@ -79,4 +79,4 @@ const SortPopup: React.FC<SortPopupProps> = ({
     );
 };
 
-export default SortPopup;
+export default memo(SortPopup);

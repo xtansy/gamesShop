@@ -24,6 +24,9 @@ const Favorites = () => {
             <div className="favorites__items items-content">
                 {!isLoading
                     ? favorites.map((item) => {
+                          const favoritesAdded =
+                              favorites.findIndex((fav) => fav.id === item.id) >
+                              -1;
                           return (
                               <Card
                                   name={item.name}
@@ -31,6 +34,7 @@ const Favorites = () => {
                                   imageUrl={item.imageUrl}
                                   price={item.price}
                                   id={item.id}
+                                  favoritesAdded={favoritesAdded}
                               />
                           );
                       })

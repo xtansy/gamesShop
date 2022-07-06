@@ -1,9 +1,8 @@
 import like from "../assets/like.png";
-import { useSelector } from "react-redux";
 
+import { memo, useCallback } from "react";
 import { useAppDispatch } from "../redux/store";
 import {
-    favoritesItemsSelector,
     postFavItem,
     deleteFavItem,
 } from "../redux/sliceces/favorites/favoritesSlice";
@@ -17,22 +16,29 @@ type CardProps = {
     name: string;
     price: number;
     imageUrl: string;
+    favoritesAdded: boolean;
 };
 
-const Card: React.FC<CardProps> = ({ name, price, imageUrl, id }) => {
+const Card: React.FC<CardProps> = ({
+    name,
+    price,
+    imageUrl,
+    id,
+    favoritesAdded,
+}) => {
     const dispatch = useAppDispatch();
 
-    const favorites = useSelector(favoritesItemsSelector);
-    const favoritesAdded = favorites.findIndex((item) => item.id === id) > -1;
+    // const favorites = useSelector(favoritesItemsSelector);
+    // const favoritesAdded = favorites.findIndex((item) => item.id === id) > -1;
 
-    const onClickBuy = () => {
+    const onClickBuy = useCallback(() => {
         const item: CartItem = { id, name, imageUrl, price, count: 1 };
         dispatch(addItem(item));
-    };
+    }, []);
 
-    const onClickDeleteItem = () => {
+    const onClickDeleteItem = useCallback(() => {
         dispatch(deleteItem(id));
-    };
+    }, []);
 
     const onClickAddFavItem = () => {
         const item: FavoriteItem = { id, name, imageUrl, price, count: 1 };
@@ -71,4 +77,4 @@ const Card: React.FC<CardProps> = ({ name, price, imageUrl, id }) => {
     );
 };
 
-export default Card;
+export default memo(Card);

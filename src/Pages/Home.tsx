@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import {
     Card,
@@ -18,6 +18,8 @@ import {
 } from "../redux/sliceces/filters/filtersSlice";
 import { useAppDispatch } from "../redux/store";
 import { typeOfSort } from "../redux/sliceces/filters/type";
+
+import { favoritesItemsSelector } from "../redux/sliceces/favorites/favoritesSlice";
 
 type GameForSlider = {
     id: number;
@@ -89,19 +91,21 @@ const Home: React.FC = () => {
 
     const { games, isLoading, paginateCount } = useSelector(gamesSelector);
 
+    const favorites = useSelector(favoritesItemsSelector);
+
     const { category, sortBy } = useSelector(filtersSelector);
 
     useEffect(() => {
         dispatch(fetchGames({ category, sortBy }));
     }, [category, sortBy, paginateCount]);
 
-    const onSelectCategory = (type: string | null) => {
+    const onSelectCategory = useCallback((type: string | null) => {
         dispatch(selectCategory(type));
-    };
+    }, []);
 
-    const onSelectPopup = (type: typeOfSort) => {
+    const onSelectPopup = useCallback((type: typeOfSort) => {
         dispatch(selectPopup(type));
-    };
+    }, []);
 
     return (
         <>
@@ -140,13 +144,17 @@ const Home: React.FC = () => {
             <div className="content__items items-content">
                 {!isLoading
                     ? games.map((item) => {
+                          const favoritesAdded =
+                              favorites.findIndex((fav) => fav.id === item.id) >
+                              -1;
                           return (
                               <Card
+                                  id={item.id}
                                   key={item.id}
                                   name={item.name}
                                   price={item.price}
                                   imageUrl={item.imageUrl}
-                                  id={item.id}
+                                  favoritesAdded={favoritesAdded}
                               />
                           );
                       })
@@ -169,4 +177,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default memo(Home);

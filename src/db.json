@@ -61,5 +61,13 @@
       "rating": 5
     }
   ],
-  "favorites": []
+  "favorites": [
+    {
+      "id": 5,
+      "name": "Resident Evil 2",
+      "imageUrl": "card/ResidentEvil2.jpg",
+      "price": 999,
+      "count": 1
+    }
+  ]
 }

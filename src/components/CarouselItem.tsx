@@ -5,7 +5,7 @@ import { Button } from "./";
 import { addItem, deleteItem } from "../redux/sliceces/cart/cartSlice";
 import { CartItem } from "../redux/sliceces/cart/types";
 
-type CarouselItemProps = {
+export type CarouselItemProps = {
     id: number;
     name: string;
     price: number;
@@ -50,4 +50,4 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
     );
 };
 
-export default CarouselItem;
+export default React.memo(CarouselItem);
